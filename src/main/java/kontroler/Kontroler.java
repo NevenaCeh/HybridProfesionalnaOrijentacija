@@ -124,17 +124,20 @@ public class Kontroler {
 			//double oblbezbednost = fis.getVariable("oblastBezbednost").defuzzify();
 			//System.out.println(fis.getVariable("napojnica").defuzzify());
 			//System.out.println(obladm +" je administracija, "+oblbezbednost+" je bezbednost");
-			
+			max.setPoeni(oblastsamaxpoena);
 			
             // load up the knowledge base
-	     /*   KieServices ks = KieServices.Factory.get();
+	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
         	
+        	kSession.insert(max);
             kSession.insert(ispitanik);
+            
             //kSession.setGlobal("ef", ef);
-            kSession.fireAllRules();*/
-            System.out.println(ispitanik);
+            
+            kSession.fireAllRules();
+            System.out.println(ispitanik+ " predlazemo mu "+ispitanik.getPredlozeniFakultet());
         } catch (Throwable t) {
         	throw new Exception("Greska jer "+t.getMessage());
         	//JOptionPane.showMessageDialog(null, "problem zbog "+t.getMessage());

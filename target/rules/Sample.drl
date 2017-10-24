@@ -1,20 +1,81 @@
 package com.sample
  
-import com.sample.DroolsTest.Message;
+import domen.Oblast;
+import domen.Ispitanik;
  
-rule "Hello World"
+rule "Administracija jako izabrao pravnik"
+no-loop true
     when
-        m : Message( status == Message.HELLO, myMessage : message )
+        o : Oblast( ime == "administracija", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje == "Pravnik")
     then
-        System.out.println( myMessage );
-        m.setMessage( "Goodbye cruel world" );
-        m.setStatus( Message.GOODBYE );
-        update( m );
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Pravni fakultet");
+        update( i );
 end
 
-rule "GoodBye"
+rule "Administracija jako izabrao racunovodja"
+no-loop true
     when
-        Message( status == Message.GOODBYE, myMessage : message )
+        o : Oblast( ime == "administracija", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje == "Racunovodja")
     then
-        System.out.println( myMessage );
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Ekonomski fakultet");
+        update( i );
+end
+
+rule "Administracija jako izabrao blagajnik"
+no-loop true
+    when
+        o : Oblast( ime == "administracija", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje == "Blagajnik")
+    then
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Ekonomski fakultet");
+        update( i );
+end
+
+rule "Administracija jako nije izabrao nijedan od administrativnih zanimanja"
+no-loop true
+    when
+        o : Oblast( ime == "administracija", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
+    then
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Pravni fakultet ili Ekonomski fakultet");
+        update( i );
+end
+
+rule "Bezbednost jako izabrao pravnik"
+no-loop true
+    when
+        o : Oblast( ime == "bezbednost", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje == "Policajac")
+    then
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Policijska akademija");
+        update( i );
+end
+
+rule "Bezbednost jako izabrao vojno lice"
+no-loop true
+    when
+        o : Oblast( ime == "bezbednost", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje == "Vojno lice")
+    then
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Vojna akademija");
+        update( i );
+end
+
+rule "Bezbednost jako nije izabrao nijedan od bezbednosnih zanimanja"
+no-loop true
+    when
+        o : Oblast( ime == "bezbednost", poeni > 30) 
+        i : Ispitanik( izabranoZanimanje != "Policajac" && izabranoZanimanje != "Vojno lice")
+    then
+        System.out.println("U pravilima sam");
+        i.setPredlozeniFakultet("Vojna akademija ili Policijska akademija");
+        update( i );
 end
