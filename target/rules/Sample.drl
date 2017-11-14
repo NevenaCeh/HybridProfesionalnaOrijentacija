@@ -6,10 +6,11 @@ import domen.Ispitanik;
 rule "Administracija jako izabrao pravnik"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni > 30) 
+        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje == "Pravnik")
     then
-        System.out.println("U pravilima sam");
+    	i.setRezultat("Administracija");		
+        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.setPredlozeniFakultet("Pravni fakultet");
         update( i );
 end
@@ -17,10 +18,11 @@ end
 rule "Administracija jako izabrao racunovodja"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni > 30) 
+        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje == "Racunovodja")
     then
-        System.out.println("U pravilima sam");
+    	i.setRezultat("Administracija");
+        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.setPredlozeniFakultet("Ekonomski fakultet");
         update( i );
 end
@@ -28,10 +30,11 @@ end
 rule "Administracija jako izabrao blagajnik"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni > 30) 
+        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje == "Blagajnik")
     then
-        System.out.println("U pravilima sam");
+    	i.setRezultat("Administracija");
+        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.setPredlozeniFakultet("Ekonomski fakultet");
         update( i );
 end
@@ -39,21 +42,23 @@ end
 rule "Administracija jako nije izabrao nijedan od administrativnih zanimanja"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni > 30) 
+        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
     then
-        System.out.println("U pravilima sam");
+    	i.setRezultat("Administracija");
+        i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.setPredlozeniFakultet("Pravni fakultet ili Ekonomski fakultet");
         update( i );
 end
 
-rule "Bezbednost jako izabrao pravnik"
+rule "Bezbednost jako izabrao policajac"
 no-loop true
     when
-        o : Oblast( ime == "bezbednost", poeni > 30) 
+        o : Oblast( ime == "bezbednost", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje == "Policajac")
     then
-        System.out.println("U pravilima sam");
+    i.setRezultat("Bezbednost");
+        i.setObjasnjenje("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
         i.setPredlozeniFakultet("Policijska akademija");
         update( i );
 end
@@ -61,10 +66,11 @@ end
 rule "Bezbednost jako izabrao vojno lice"
 no-loop true
     when
-        o : Oblast( ime == "bezbednost", poeni > 30) 
+        o : Oblast( ime == "bezbednost", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje == "Vojno lice")
     then
-        System.out.println("U pravilima sam");
+    i.setRezultat("Bezbednost");
+        i.setObjasnjenje("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
         i.setPredlozeniFakultet("Vojna akademija");
         update( i );
 end
@@ -72,10 +78,532 @@ end
 rule "Bezbednost jako nije izabrao nijedan od bezbednosnih zanimanja"
 no-loop true
     when
-        o : Oblast( ime == "bezbednost", poeni > 30) 
+        o : Oblast( ime == "bezbednost", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje != "Policajac" && izabranoZanimanje != "Vojno lice")
     then
-        System.out.println("U pravilima sam");
+    i.setRezultat("Bezbednost");
+        i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
         i.setPredlozeniFakultet("Vojna akademija ili Policijska akademija");
         update( i );
 end
+
+rule "Tehnicki jako izabrao tehnicar"
+no-loop true
+	when
+	o : Oblast( ime == "tehnicki", poeni >= 44.46712634574988) 
+	i : Ispitanik(izabranoZanimanje == "Tehnicar")
+	then
+		i.setRezultat("Tehnika i zanati");
+		i.setObjasnjenje("Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata: \n elektricar, zanatlija, programer");
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet");
+		update(i);
+end
+
+rule "Tehnicki jako izabrao programer"
+no-loop true
+	when
+	o : Oblast( ime == "tehnicki", poeni >= 44.46712634574988) 
+	i : Ispitanik(izabranoZanimanje == "Programer")
+	then
+		i.setRezultat("Tehnika i zanati");
+		i.setObjasnjenje("Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata: \n elektricar, zanatlija, programer");
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet ili Fakultet organizacionih nauka ili Matematicki fakultet");		
+		update(i);
+end
+
+rule "Tehnicki jako nije izabrao nista od ponudjenog"
+no-loop true
+	when
+	o : Oblast( ime == "tehnicki", poeni >= 44.46712634574988) 
+	i : Ispitanik(izabranoZanimanje != "Programer" && izabranoZanimanje != "Tehnicar")
+	then
+		i.setRezultat("Tehnika i zanati");
+		i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata: \n elektricar, zanatlija, programer");
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet ili Fakultet organizacionih nauka ili Matematicki fakultet");		
+		update(i);
+end
+
+rule "Estet Oblik jako izabrao slikanje"
+no-loop true
+	when
+	o : Oblast( ime == "estetOblik", poeni >= 44.23544401247219) 
+	i : Ispitanik(izabranoZanimanje == "Likovni umetnik (slikar, vajar)")
+	then
+		i.setRezultat("Estetsko oblikovanje");
+		i.setObjasnjenje("Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: \nbavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, \nprodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, \nscenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, \nmodni dizajner, kompozitor rok ili pop muzike.");
+		i.setPredlozeniFakultet("Fakultet likovnih umetnosti");
+		update(i);
+end
+
+rule "Estet Oblik nije jako izabrao slikanje"
+no-loop true
+	when
+	o : Oblast( ime == "estetOblik", poeni >= 44.23544401247219) 
+	i : Ispitanik(izabranoZanimanje != "Likovni umetnik (slikar, vajar)")
+	then
+		i.setRezultat("Estetsko oblikovanje");
+		i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: \nbavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, \nprodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, \nscenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, \nmodni dizajner, kompozitor rok ili pop muzike.");
+		i.setPredlozeniFakultet("Fakultet likovnih umetnosti ili Filozofski fakultet");
+		update(i);
+end
+
+rule "Vodi kultura"
+	when
+		i:Ispitanik( bodoviKultura > bodoviAdministracija, bodoviKultura > bodoviBezbednost, bodoviKultura > bodoviTehnicki, bodoviKultura > bodoviNauka, bodoviKultura > bodoviPoljoprivreda, bodoviKultura > bodoviPrehrana, bodoviKultura > bodoviTrgovina, bodoviKultura > bodoviEstetOblik, bodoviKultura > bodoviHumRad, rezultat == "nepoznato")
+	then
+		i.setRezultat("Kultura");
+		i.setObjasnjenje("Odgovaraju Vam poslovi u oblasti kulture, muzike i javne scene: \nUcesce na medjunarodnom filmskom festivalu, proucavanje nacionalne muzike, kustos, \nradio spiker ili TV voditelj, pisac knjige o istoriji umetnosti, biranje filmova za program festivala, \nsmisljanje baletskih i scenskih izvodjenja (koreografije), bavljenje kritikom umetnickog stvaralastva, \nvodjenje umetnicke galerije, organizacija umetnicke izlozbe, procena vrednosti umetnickih dela, \nuredjivanje obrazovnih programa za decu, vodjenje TV emisije o kulturi i \nucesce u organizaciji kulturnh dogadjaja.");
+		update(i);
+end
+
+ rule "Vodi nauka"
+	when
+		i:Ispitanik( bodoviNauka >= bodoviAdministracija, bodoviNauka >= bodoviBezbednost, bodoviNauka >= bodoviTehnicki, bodoviNauka >= bodoviKultura, bodoviNauka >= bodoviPoljoprivreda, bodoviNauka >= bodoviPrehrana, bodoviNauka >=bodoviTrgovina, bodoviNauka >= bodoviEstetOblik, bodoviNauka >= bodoviHumRad, rezultat == "nepoznato")
+	then
+		i.setRezultat("Nauka");
+		i.setObjasnjenje("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. \nRacunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, \nnaucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, \nstrucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, \neksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, \nstrucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
+		update(i);
+end
+
+ rule "Vodi poljoprivreda"
+	when
+		i:Ispitanik( bodoviPoljoprivreda >= bodoviAdministracija, bodoviPoljoprivreda >= bodoviBezbednost, bodoviPoljoprivreda >= bodoviTehnicki, bodoviPoljoprivreda >= bodoviKultura, bodoviPoljoprivreda >= bodoviNauka, bodoviPoljoprivreda >= bodoviPrehrana, bodoviPoljoprivreda >=bodoviTrgovina, bodoviPoljoprivreda >= bodoviEstetOblik, bodoviPoljoprivreda >= bodoviHumRad, rezultat == "nepoznato")
+	then
+		i.setRezultat("Poljoprivreda");
+		i.setObjasnjenje("Poljoprivreda, lov, ribolov, rad sa zivotinjama i na otvorenom prostoru su ona zanimanja u kojima vi mozete naci sebe: \nRadnik na otvorenom prostoru (pastir, poljoprivrednik itd), obradjivanje zemljista pomocu poljoprivredne mehanizacije, \nnadzor izlaganja pilica na farmi, zasejavanje poljoprivrednih kultura (psenicu, kukuruz, suncokret...), \nodredjivanje vrste djubriva za psenicne useve, planiranje i briga o ishrani stoke na farmi, \nhranjenje ribe u ribnjaku, sumarstvo, uzgoj domacih zivotinja, \ngajenje vinograda, sadjenje i navodnjavanje voca i povrca, sadjenje, branje i \nsusenje duvana, branje i prodavanje voca, briga o zdravlju domacih zivotinja, skladistenje voca i povrca u hladnjacama \ni prskanje poljoprivrednih kultura zastitnim sredstvima.");
+		update(i);
+end
+
+ rule "Vodi prehrana"
+	when
+		i:Ispitanik( bodoviPrehrana >= bodoviAdministracija, bodoviPrehrana >= bodoviBezbednost, bodoviPrehrana >= bodoviTehnicki, bodoviPrehrana >= bodoviKultura, bodoviPrehrana >= bodoviNauka, bodoviPrehrana >= bodoviPoljoprivreda, bodoviPrehrana >=bodoviTrgovina, bodoviPrehrana >= bodoviEstetOblik, bodoviPrehrana >= bodoviHumRad, rezultat == "nepoznato")
+	then
+		i.setRezultat("Prehrana");
+		i.setObjasnjenje("Rad u prehrambenoj industriji: \nkuvar nacionalne kuhinje, kuvar strane kuhinje, poslasticar, pekar, nutricionista, \ndekorator torti, rad za sankom, kreiranje novih recepata, pisanje knjige recepata, konobar.");
+		update(i);
+end
+
+ rule "Vodi trgovina"
+	when
+		i:Ispitanik( bodoviTrgovina >= bodoviAdministracija, bodoviTrgovina >= bodoviBezbednost, bodoviTrgovina >= bodoviTehnicki, bodoviTrgovina >= bodoviKultura, bodoviTrgovina >= bodoviNauka, bodoviTrgovina >= bodoviPoljoprivreda, bodoviTrgovina >= bodoviPrehrana, bodoviTrgovina >= bodoviEstetOblik, bodoviTrgovina >= bodoviHumRad, rezultat == "nepoznato")
+	then
+		i.setRezultat("Trgovina");
+		i.setObjasnjenje("Pruzanje usluga trgovine Vam najvise odgovara, tj: \nnabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, \nsastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, \ntrgovacki putnik, kasir. ");
+		update(i);
+end
+
+ rule "Vodi estet oblik"
+	when
+		i:Ispitanik( bodoviEstetOblik >= bodoviAdministracija, bodoviEstetOblik >= bodoviBezbednost, bodoviEstetOblik >= bodoviTehnicki, bodoviEstetOblik >= bodoviKultura, bodoviEstetOblik >= bodoviNauka, bodoviEstetOblik >= bodoviPoljoprivreda, bodoviEstetOblik >=bodoviPrehrana, bodoviEstetOblik >= bodoviTrgovina, bodoviEstetOblik >= bodoviHumRad, rezultat == "nepoznato")
+	then
+		i.setRezultat("Estetsko oblikovanje");
+		i.setObjasnjenje("Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: \nbavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, \nprodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, \nscenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, \nmodni dizajner, kompozitor rok ili pop muzike.");
+		update(i);
+end
+
+ rule "Vodi hum rad"
+	when
+		i:Ispitanik( bodoviHumRad >= bodoviAdministracija, bodoviHumRad >= bodoviBezbednost, bodoviHumRad >= bodoviTehnicki, bodoviHumRad >= bodoviKultura, bodoviHumRad >= bodoviNauka, bodoviHumRad >= bodoviPoljoprivreda, bodoviHumRad >=bodoviPrehrana, bodoviHumRad >= bodoviTrgovina,  bodoviHumRad>= bodoviEstetOblik, rezultat == "nepoznato")
+	then
+		i.setRezultat("Humanitarno - zdravstveni rad");
+		i.setObjasnjenje("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: \nlekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, \nrad u decijim domovima, rad u maloletnickom zatvoru.");
+		update(i);
+end
+
+rule "Administracija izabrao pravnik svi proseci"
+	when
+		i: Ispitanik( rezultat == "Administracija", izabranoZanimanje == "Pravnik", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Pravni fakultet");
+		update(i);
+end
+
+rule "Administracija izabrao racunovodja prosek dobar i ok "
+	when
+		i:Ispitanik( rezultat == "Administracija", izabranoZanimanje == "Racunovodja", prosek >= 3.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Ekonomski fakultet");
+		update(i);
+end
+
+rule "Administracija izabrao blagajnik prosek dobar i ok"
+	when
+		i:Ispitanik( rezultat == "Administracija", izabranoZanimanje == "Blagajnik", prosek >=3.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Ekonomski fakultet");
+		update(i);
+end
+
+rule "Administracija izabrao racunovodja prosek los "
+	when
+		i:Ispitanik( rezultat == "Administracija", izabranoZanimanje == "Racunovodja", prosek < 3.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Visa poslovna skola");
+		update(i);
+end
+
+rule "Administracija izabrao blagajnik prosek los"
+	when
+		i:Ispitanik( rezultat == "Administracija", izabranoZanimanje == "Blagajnik", prosek < 3.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Visa poslovna skola");
+		update(i);
+end
+
+rule "Administracija nije izabrao nista od ponudjenog dobar i ok prosek"
+	when
+		i:Ispitanik( rezultat == "Administracija", (izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Blagajnik"), prosek >= 3.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Ekonomski fakultet ili Fakultet organizacionih nauka");
+		update(i);
+end
+
+rule "Administracija nije izabrao nista od ponudjenog los prosek"
+	when
+		i:Ispitanik( rezultat == "Administracija", (izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Blagajnik"), prosek < 3.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Visa poslovna skola");
+		update(i);
+end
+
+rule "Bezbednost izabrao policajac dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", izabranoZanimanje == "Policajac", prosek >=4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Policijska akademija");
+		update(i);
+end
+
+rule "Bezbednost izabrao vojnik dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", izabranoZanimanje == "Vojno lice", prosek >= 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Vojna akademija");
+		update(i);
+end
+
+
+rule "Bezbednost izabrao policajac ili vojnik prosek ok"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", (izabranoZanimanje == "Policajac" || izabranoZanimanje == "Vojno lice"), (prosek<4.0 && prosek>=3.0), predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Fakultet bezbednosti");
+		update(i);
+end
+
+rule "Bezbednost izabrao policajac ili vojnik prosek los"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", (izabranoZanimanje == "Policajac" || izabranoZanimanje == "Vojno lice"), prosek < 3.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Obuke za vatrogasce");
+		update(i);
+end
+
+rule "Bezbednost nije izabrao nista od ponudjenog dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", (izabranoZanimanje != "Policajac" || izabranoZanimanje != "Vojno lice"), prosek >= 4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Vojna akademija ili Policijska akademija");
+		update(i);
+end
+
+rule "Bezbednost nije izabrao nista od ponudjenog ok prosek"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", (izabranoZanimanje != "Policajac" || izabranoZanimanje != "Vojno lice"), (prosek<4.0 && prosek>=3.0), predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Fakultet bezbednosti");
+		update(i);
+end
+
+rule "Bezbednost nije izabrao nista od ponudjenog los prosek"
+	when
+		i: Ispitanik( rezultat == "Bezbednost", (izabranoZanimanje != "Policajac" || izabranoZanimanje != "Vojno lice"), prosek < 3.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Obuke za vatrogasce");
+		update(i);
+end
+
+rule "Tehnicki izabrao tehnicar dobar prosek"
+	when
+		i:Ispitanik( rezultat == "Tehnika i zanati", izabranoZanimanje == "Tehnicar", prosek >=4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet");
+		update(i);
+end
+
+
+rule "Tehnicki izabrao tehnicar ok i los prosek"
+	when
+		i:Ispitanik( rezultat == "Tehnika i zanati", izabranoZanimanje == "Tehnicar", prosek < 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Masinski fakultet");
+		update(i);
+end
+
+rule "Tehnicki izabrao programer dobar prosek"
+	when
+		i:Ispitanik( rezultat == "Tehnika i zanati", izabranoZanimanje == "Programer", prosek >=4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet ili Fakultet organizacionih nauka ili Matematicki fakultet");
+		update(i);
+end
+
+rule "Tehnicki izabrao programer ok i los prosek"
+	when
+		i:Ispitanik( rezultat == "Tehnika i zanati", izabranoZanimanje == "Programer", prosek < 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Matematicki fakultet");
+		update(i);
+end
+
+
+rule "Tehnicki nije izabrao nista od ponudjenog dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Tehnika i zanati", (izabranoZanimanje != "Tehnicar" || izabranoZanimanje != "Programer"), prosek >= 4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet ili Fakultet organizacionih nauka ili Matematicki fakultet");
+		update(i);
+end
+
+rule "Tehnicki nije izabrao nista od ponudjenog ok  i los prosek"
+	when
+		i: Ispitanik( rezultat == "Tehnika i zanati", (izabranoZanimanje != "Tehnicar" || izabranoZanimanje != "Programer"), prosek<4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Masinski fakultet");
+		update(i);
+end
+
+rule "Kultura izabrao glumac"
+	when
+		i: Ispitanik( rezultat == "Kultura", izabranoZanimanje == "Glumac", predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Fakultet dramskih umetnosti");
+		update(i);
+end
+
+rule "Kultura izabrao muziku dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Kultura", izabranoZanimanje == "Muzicar (pevac, kompozitor, pijanista...)", prosek >4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Muzicka akademija");
+		update(i);
+end
+
+rule "Kultura izabrao slikanje dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Kultura", izabranoZanimanje == "Likovni umetnik (slikar, vajar)", prosek > 4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Fakultet likovnih umetnosti");
+		update(i);
+end
+
+rule "Kultura izabrao muziku ili slikanje ok ili los prosek"
+	when
+		i:Ispitanik( rezultat == "Kultura",  (izabranoZanimanje == "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje == "Likovni umetnik (slikar, vajar)"), prosek <= 4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Filozofski fakultet");
+		update(i);
+end
+
+rule "Kultura nije izabrao nista od ponudjenog dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Kultura", (izabranoZanimanje != "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje != "Likovni umetnik (slikar, vajar)"), prosek>4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Fakultet likovnih umetnosti ili Filozofski fakultet");
+		update(i);
+end
+
+rule "Kultura nije izabrao nista od ponudjenog ok ili los prosek"
+	when
+		i: Ispitanik( rezultat == "Kultura", (izabranoZanimanje != "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje != "Likovni umetnik (slikar, vajar)"), prosek<4.0, predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Filozofski fakultet");
+		update(i);
+end
+
+rule "Nauka izabrao biolog"
+	when
+		i: Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Biolog", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Bioloski fakultet");
+		update(i);
+end
+
+rule "Nauka izabrao hemiju"
+	when
+		i: Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Hemicar", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Hemijski fakultet ili Fakultet za fizicku hemiju");
+		update(i);
+end
+
+rule "Nauka izabrao fiziku"
+	when
+		i: Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Fizicar", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Fizicki fakultet ili Fakultet za fizicku hemiju");
+		update(i);
+end
+
+rule "Nauka izabrao lekara dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Lekar (sve vrste)", prosek >= 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Medicinski fakultet ili Stomatoloski fakultet");
+		update(i);
+end
+
+rule "Nauka izabrao lekara ok i los prosek"
+	when
+		i: Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Lekar (sve vrste)", prosek < 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Visa medicinska skola");
+		update(i);
+end
+
+rule "Nauka izabrao veterinara"
+	when
+		i: Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Veterinar", predlozeniFakultet == "nepoznato")
+	then
+		i.setPredlozeniFakultet("Fakultet veterinarske medicine");
+		update(i);
+end
+
+rule "Nauka izabrao programer dobar prosek"
+	when
+		i:Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Programer", predlozeniFakultet == "nepoznato", prosek >=4.0 )
+	then
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet ili Matematicki fakultet");
+		update(i);
+end
+
+rule "Nauka izabrao programer ok i los prosek"
+	when
+		i:Ispitanik( rezultat == "Nauka", izabranoZanimanje == "Programer", predlozeniFakultet == "nepoznato", prosek<4.0 )
+	then
+		i.setPredlozeniFakultet("Matematicki fakultet");
+		update(i);
+end
+
+rule "Nauka nije izabrao nista od ponudjenog dobar prosek"
+	when
+		i:Ispitanik( rezultat == "Nauka", (izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog"), predlozeniFakultet == "nepoznato", prosek<=4.0 )
+	then
+		i.setPredlozeniFakultet("Elektro-tehnicki fakultet ili Matematicki fakultet");
+		update(i);
+end
+
+rule "Nauka nije izabrao nista od ponudjenog ok i los prosek"
+	when
+		i:Ispitanik( rezultat == "Nauka", (izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog"), predlozeniFakultet == "nepoznato", prosek>4.0 )
+	then
+		i.setPredlozeniFakultet("Bioloski fakultet ili Hemijski fakultet ili Fizicki fakulte ili Fakultet za fizicku hemiju");
+		update(i);
+end
+
+rule "Poljoprivreda traktorista svi proseci"
+	when
+		i: Ispitanik( rezultat == "Poljoprivreda", izabranoZanimanje == "Traktorista", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Poljoprivredni fakultet");
+		update(i);
+end
+
+rule "Poljoprivreda nije izabrao nista svi proseci"
+	when
+		i:Ispitanik( rezultat == "Poljoprivreda", izabranoZanimanje != "Traktorista", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Poljoprivredni fakultet");
+		update(i);
+end
+
+rule "Prehrana izabrao kuvar svi proseci"
+	when
+		i: Ispitanik( rezultat == "Prehrana", izabranoZanimanje == "Kuvar", predlozeniFakultet =="nepoznato" )
+	then
+		i.setPredlozeniFakultet("Gastronomija");
+		update(i);
+end
+
+rule "Prehrana nije izabrao kuvar svi proseci"
+	when
+		i: Ispitanik( rezultat == "Prehrana", izabranoZanimanje != "Kuvar", predlozeniFakultet =="nepoznato" )
+	then
+		i.setPredlozeniFakultet("Gastronomija");
+		update(i);
+end
+
+rule "Trgovina izabrao trgovac dobar i ok prosek"
+	when
+		i:Ispitanik( rezultat == "Trgovac", izabranoZanimanje == "Trgovac", predlozeniFakultet =="nepoznato", prosek >3.0 )
+	then
+		i.setPredlozeniFakultet("Ekonomski fakultet");
+		update(i);
+end
+
+rule "Trgovina izabrao trgovac los prosek"
+	when
+		i:Ispitanik( rezultat == "Trgovac", izabranoZanimanje == "Trgovac", predlozeniFakultet =="nepoznato", prosek <3.0 )
+	then
+		i.setPredlozeniFakultet("Visa poslovna skola");
+		update(i);
+end
+
+rule "Trgovina nije izabrao trgovac dobar i ok prosek"
+	when
+		i:Ispitanik( rezultat == "Trgovac", izabranoZanimanje != "Trgovac", predlozeniFakultet =="nepoznato", prosek >3.0 )
+	then
+		i.setPredlozeniFakultet("Ekonomski fakultet");
+		update(i);
+end
+
+rule "Trgovina nije izabrao trgovac los prosek"
+	when
+		i:Ispitanik( rezultat == "Trgovac", izabranoZanimanje != "Trgovac", predlozeniFakultet =="nepoznato", prosek <3.0 )
+	then
+		i.setPredlozeniFakultet("Visa poslovna skola");
+		update(i);
+end
+
+rule "Hum rad izabrao lekara dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Humanitarno - zdravstveni rad", izabranoZanimanje == "Lekar (sve vrste)", prosek >= 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Medicinski fakultet ili Stomatoloski fakultet");
+		update(i);
+end
+
+rule "Hum rad izabrao lekara ok i los prosek"
+	when
+		i: Ispitanik( rezultat == "Humanitarno - zdravstveni rad", izabranoZanimanje == "Lekar (sve vrste)", prosek < 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Visa medicinska skola");
+		update(i);
+end
+
+rule "Hum rad izabrao veterinara"
+	when
+		i: Ispitanik( rezultat == "Humanitarno - zdravstveni rad", izabranoZanimanje == "Veterinar", predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Fakultet veterinarske medicine");
+		update(i);
+end
+
+rule "Hum rad nije izabrao ponudjeno dobar prosek"
+	when
+		i: Ispitanik( rezultat == "Humanitarno - zdravstveni rad", (izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)"), prosek >= 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Medicinski fakultet ili Stomatoloski fakultet");
+		update(i);
+end
+
+rule "Hum rad nije izabrao ponudjeno ok i los prosek"
+	when
+		i: Ispitanik( rezultat == "Humanitarno - zdravstveni rad", (izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)"), prosek < 4.0, predlozeniFakultet == "nepoznato" )
+	then
+		i.setPredlozeniFakultet("Visa medicinska skola");
+		update(i);
+end
+
+
+

@@ -199,274 +199,274 @@ RULEBLOCK proforientrules
 	ACCU : MAX;
 	
 	RULE 1 : IF prosek IS dobar AND administracija IS jako
-			THEN oblastAdministracija IS jako;
+			THEN oblastAdministracija IS jako WITH 1;
 			
 	RULE 2 : IF prosek IS dobar AND bezbednost IS jako
-			THEN oblastBezbednost IS jako;
+			THEN oblastBezbednost IS jako WITH 1;
 			
 	RULE 3 : IF prosek IS dobar AND estetOblik IS jako 
-			THEN oblastEstetOblik IS jako;
+			THEN oblastEstetOblik IS jako WITH 1;
 	
 	RULE 4: IF prosek IS dobar AND humRad IS jako
-			THEN oblastHumRad IS jako;
+			THEN oblastHumRad IS jako WITH 1;
 			
 	RULE 5: IF prosek IS dobar AND kultura IS jako
-			THEN oblastKultura IS jako;
+			THEN oblastKultura IS jako WITH 1;
 			
 	RULE 6: IF prosek IS dobar AND nauka IS jako
-			THEN oblastNauka IS jako;
+			THEN oblastNauka IS jako WITH 1;
 	
 	RULE 7: IF prosek IS dobar AND poljoprivreda IS jako
-			THEN oblastPoljoprivreda IS jako;
+			THEN oblastPoljoprivreda IS jako WITH 1;
 	
 	RULE 8: IF prosek IS dobar AND prehrana IS jako
-			THEN oblastPrehrana IS jako;
+			THEN oblastPrehrana IS jako WITH 1;
 	
 	RULE 9: IF prosek IS dobar AND tehnicki IS jako
-			THEN oblastTehnicki IS jako;
+			THEN oblastTehnicki IS jako WITH 1;
 	
 	RULE 10: IF prosek IS dobar AND trgovina IS jako
-			THEN oblastTrgovina IS jako;
+			THEN oblastTrgovina IS jako WITH 1;
 	
 	RULE 11: IF prosek IS ok AND administracija IS jako
-				THEN oblastAdministracija IS jako;
+				THEN oblastAdministracija IS jako WITH 0.75;
 				
 	RULE 12: IF prosek IS ok AND bezbednost IS jako
-				THEN oblastBezbednost IS jako;
+				THEN oblastBezbednost IS jako WITH 0.75;
 				
 	RULE 13: IF prosek IS ok AND estetOblik IS jako
-				THEN oblastEstetOblik IS jako;
+				THEN oblastEstetOblik IS jako WITH 0.75;
 	
 	RULE 14: IF prosek IS ok AND humRad IS jako
-				THEN oblastHumRad IS jako;
+				THEN oblastHumRad IS jako WITH 0.75;
 	
 	RULE 15: IF prosek IS ok AND kultura IS jako
-				THEN oblastKultura IS jako;
+				THEN oblastKultura IS jako WITH 0.75;
 	
 	RULE 16: IF prosek IS ok AND nauka IS jako
-			THEN oblastNauka IS jako;
+			THEN oblastNauka IS jako WITH 0.75;
 	
 	RULE 17: IF prosek IS ok AND poljoprivreda IS jako
-			THEN oblastPoljoprivreda IS jako;
+			THEN oblastPoljoprivreda IS jako WITH 0.75;
 	
 	RULE 18: IF prosek IS ok AND prehrana IS jako
-			THEN oblastPrehrana IS jako;
+			THEN oblastPrehrana IS jako WITH 0.75;
 	
 	RULE 19: IF prosek IS ok AND tehnicki IS jako
-			THEN oblastTehnicki IS jako;
+			THEN oblastTehnicki IS jako WITH 0.75;
 	
 	RULE 20: IF prosek IS ok AND trgovina IS jako
-			THEN oblastTrgovina IS jako;
+			THEN oblastTrgovina IS jako WITH 0.75;
 	
 	RULE 21: IF prosek IS los AND administracija IS jako
-				THEN oblastAdministracija IS jako;
+				THEN oblastAdministracija IS jako WITH 0.5;
 				
 	RULE 22: IF prosek IS los AND bezbednost IS jako
-				THEN oblastBezbednost IS jako;
+				THEN oblastBezbednost IS jako WITH 0.5;
 				
 	RULE 23: IF prosek IS los AND estetOblik IS jako
-				THEN oblastEstetOblik IS jako;
+				THEN oblastEstetOblik IS jako WITH 0.5;
 	
 	RULE 24: IF prosek IS los AND humRad IS jako
-				THEN oblastHumRad IS jako;
+				THEN oblastHumRad IS jako WITH 0.5;
 	
 	RULE 25: IF prosek IS los AND kultura IS jako
-				THEN oblastKultura IS jako;
+				THEN oblastKultura IS jako WITH 0.5;
 	
 	RULE 26: IF prosek IS los AND nauka IS jako
-			THEN oblastNauka IS jako;
+			THEN oblastNauka IS jako WITH 0.5;
 	
 	RULE 27: IF prosek IS los AND poljoprivreda IS jako
-			THEN oblastPoljoprivreda IS jako;
+			THEN oblastPoljoprivreda IS jako WITH 0.5;
 	
 	RULE 28: IF prosek IS los AND prehrana IS jako
-			THEN oblastPrehrana IS jako;
+			THEN oblastPrehrana IS jako WITH 0.5;
 	
 	RULE 29: IF prosek IS los AND tehnicki IS jako
-			THEN oblastTehnicki IS jako;
+			THEN oblastTehnicki IS jako WITH 0.5;
 	
 	RULE 30: IF prosek IS los AND trgovina IS jako
-			THEN oblastTrgovina IS jako;
+			THEN oblastTrgovina IS jako WITH 0.5;
 	
 	RULE 31 : IF prosek IS dobar AND administracija IS srednje
-			THEN oblastAdministracija IS srednje;
+			THEN oblastAdministracija IS srednje WITH 1;
 			
 	RULE 32 : IF prosek IS dobar AND bezbednost IS srednje
-			THEN oblastBezbednost IS srednje;
+			THEN oblastBezbednost IS srednje WITH 1;
 			
 	RULE 33 : IF prosek IS dobar AND estetOblik IS srednje 
-			THEN oblastEstetOblik IS srednje;
+			THEN oblastEstetOblik IS srednje WITH 1;
 	
 	RULE 34: IF prosek IS dobar AND humRad IS srednje
-			THEN oblastHumRad IS srednje;
+			THEN oblastHumRad IS srednje WITH 1;
 			
 	RULE 35: IF prosek IS dobar AND kultura IS srednje
-			THEN oblastKultura IS srednje;
+			THEN oblastKultura IS srednje WITH 1;
 			
 	RULE 36: IF prosek IS dobar AND nauka IS srednje
-			THEN oblastNauka IS srednje;
+			THEN oblastNauka IS srednje WITH 1;
 	
 	RULE 37: IF prosek IS dobar AND poljoprivreda IS srednje
-			THEN oblastPoljoprivreda IS srednje;
+			THEN oblastPoljoprivreda IS srednje WITH 1;
 	
 	RULE 38: IF prosek IS dobar AND prehrana IS srednje
-			THEN oblastPrehrana IS srednje;
+			THEN oblastPrehrana IS srednje WITH 1;
 	
 	RULE 39: IF prosek IS dobar AND tehnicki IS srednje
-			THEN oblastTehnicki IS srednje;
+			THEN oblastTehnicki IS srednje WITH 1;
 	
 	RULE 40: IF prosek IS dobar AND trgovina IS srednje
-			THEN oblastTrgovina IS srednje;
+			THEN oblastTrgovina IS srednje WITH 1;
 	
 	RULE 41: IF prosek IS ok AND administracija IS srednje
-				THEN oblastAdministracija IS srednje;
+				THEN oblastAdministracija IS srednje WITH 0.75;
 				
 	RULE 42: IF prosek IS ok AND bezbednost IS srednje
-				THEN oblastBezbednost IS srednje;
+				THEN oblastBezbednost IS srednje WITH 0.75;
 				
 	RULE 43: IF prosek IS ok AND estetOblik IS srednje
-				THEN oblastEstetOblik IS srednje;
+				THEN oblastEstetOblik IS srednje WITH 0.75;
 	
 	RULE 44: IF prosek IS ok AND humRad IS srednje
-				THEN oblastHumRad IS srednje;
+				THEN oblastHumRad IS srednje WITH 0.75;
 	
 	RULE 45: IF prosek IS ok AND kultura IS srednje
-				THEN oblastKultura IS srednje;
+				THEN oblastKultura IS srednje WITH 0.75;
 	
 	RULE 46: IF prosek IS ok AND nauka IS srednje
-			THEN oblastNauka IS srednje;
+			THEN oblastNauka IS srednje WITH 0.75;
 	
 	RULE 47: IF prosek IS ok AND poljoprivreda IS srednje
-			THEN oblastPoljoprivreda IS srednje;
+			THEN oblastPoljoprivreda IS srednje WITH 0.75;
 	
 	RULE 48: IF prosek IS ok AND prehrana IS srednje
-			THEN oblastPrehrana IS srednje;
+			THEN oblastPrehrana IS srednje WITH 0.75;
 	
 	RULE 49: IF prosek IS ok AND tehnicki IS srednje
-			THEN oblastTehnicki IS srednje;
+			THEN oblastTehnicki IS srednje WITH 0.75;
 	
 	RULE 50: IF prosek IS ok AND trgovina IS srednje
-			THEN oblastTrgovina IS srednje;
+			THEN oblastTrgovina IS srednje WITH 0.75;
 	
 	RULE 51: IF prosek IS los AND administracija IS srednje
-				THEN oblastAdministracija IS srednje;
+				THEN oblastAdministracija IS srednje WITH 0.5;
 				
 	RULE 52: IF prosek IS los AND bezbednost IS srednje
-				THEN oblastBezbednost IS srednje;
+				THEN oblastBezbednost IS srednje WITH 0.5;
 				
 	RULE 53: IF prosek IS los AND estetOblik IS srednje
-				THEN oblastEstetOblik IS srednje;
+				THEN oblastEstetOblik IS srednje WITH 0.5;
 	
 	RULE 54: IF prosek IS los AND humRad IS srednje
-				THEN oblastHumRad IS srednje;
+				THEN oblastHumRad IS srednje WITH 0.5;
 	
 	RULE 55: IF prosek IS los AND kultura IS srednje
-				THEN oblastKultura IS srednje;
+				THEN oblastKultura IS srednje WITH 0.5;
 	
 	RULE 56: IF prosek IS los AND nauka IS srednje
-			THEN oblastNauka IS srednje;
+			THEN oblastNauka IS srednje WITH 0.5;
 	
 	RULE 57: IF prosek IS los AND poljoprivreda IS srednje
-			THEN oblastPoljoprivreda IS srednje;
+			THEN oblastPoljoprivreda IS srednje WITH 0.5;
 	
 	RULE 58: IF prosek IS los AND prehrana IS srednje
-			THEN oblastPrehrana IS srednje;
+			THEN oblastPrehrana IS srednje WITH 0.5;
 	
 	RULE 59: IF prosek IS los AND tehnicki IS srednje
-			THEN oblastTehnicki IS srednje;
+			THEN oblastTehnicki IS srednje WITH 0.5;
 	
 	RULE 60: IF prosek IS los AND trgovina IS srednje
-			THEN oblastTrgovina IS srednje;
+			THEN oblastTrgovina IS srednje WITH 0.5;
 	
 	RULE 61 : IF prosek IS dobar AND administracija IS slabo
-			THEN oblastAdministracija IS slabo;
+			THEN oblastAdministracija IS slabo WITH 1;
 			
 	RULE 62 : IF prosek IS dobar AND bezbednost IS slabo
-			THEN oblastBezbednost IS slabo;
+			THEN oblastBezbednost IS slabo WITH 1;
 			
 	RULE 63 : IF prosek IS dobar AND estetOblik IS slabo 
-			THEN oblastEstetOblik IS slabo;
+			THEN oblastEstetOblik IS slabo WITH 1;
 	
 	RULE 64: IF prosek IS dobar AND humRad IS slabo
-			THEN oblastHumRad IS slabo;
+			THEN oblastHumRad IS slabo WITH 1;
 			
 	RULE 65: IF prosek IS dobar AND kultura IS slabo
-			THEN oblastKultura IS slabo;
+			THEN oblastKultura IS slabo WITH 1;
 			
 	RULE 66: IF prosek IS dobar AND nauka IS slabo
-			THEN oblastNauka IS slabo;
+			THEN oblastNauka IS slabo WITH 1;
 	
 	RULE 67: IF prosek IS dobar AND poljoprivreda IS slabo
-			THEN oblastPoljoprivreda IS slabo;
+			THEN oblastPoljoprivreda IS slabo WITH 1;
 	
 	RULE 68: IF prosek IS dobar AND prehrana IS slabo
-			THEN oblastPrehrana IS slabo;
+			THEN oblastPrehrana IS slabo WITH 1;
 	
 	RULE 69: IF prosek IS dobar AND tehnicki IS slabo
-			THEN oblastTehnicki IS slabo;
+			THEN oblastTehnicki IS slabo WITH 1;
 	
 	RULE 70: IF prosek IS dobar AND trgovina IS slabo
-			THEN oblastTrgovina IS slabo;
+			THEN oblastTrgovina IS slabo WITH 1;
 	
 	RULE 71: IF prosek IS ok AND administracija IS slabo
-				THEN oblastAdministracija IS slabo;
+				THEN oblastAdministracija IS slabo WITH 0.5;
 				
 	RULE 72: IF prosek IS ok AND bezbednost IS slabo
-				THEN oblastBezbednost IS slabo;
+				THEN oblastBezbednost IS slabo WITH 0.5;
 				
 	RULE 73: IF prosek IS ok AND estetOblik IS slabo
-				THEN oblastEstetOblik IS slabo;
+				THEN oblastEstetOblik IS slabo WITH 0.5;
 	
 	RULE 74: IF prosek IS ok AND humRad IS slabo
-				THEN oblastHumRad IS slabo;
+				THEN oblastHumRad IS slabo WITH 0.5;
 	
 	RULE 75: IF prosek IS ok AND kultura IS slabo
-				THEN oblastKultura IS slabo;
+				THEN oblastKultura IS slabo WITH 0.5;
 	
 	RULE 76: IF prosek IS ok AND nauka IS slabo
-			THEN oblastNauka IS slabo;
+			THEN oblastNauka IS slabo WITH 0.5;
 	
 	RULE 77: IF prosek IS ok AND poljoprivreda IS slabo
-			THEN oblastPoljoprivreda IS slabo;
+			THEN oblastPoljoprivreda IS slabo WITH 0.5;
 	
 	RULE 78: IF prosek IS ok AND prehrana IS slabo
-			THEN oblastPrehrana IS slabo;
+			THEN oblastPrehrana IS slabo WITH 0.5;
 	
 	RULE 79: IF prosek IS ok AND tehnicki IS slabo
-			THEN oblastTehnicki IS slabo;
+			THEN oblastTehnicki IS slabo WITH 0.5;
 	
 	RULE 80: IF prosek IS ok AND trgovina IS slabo
-			THEN oblastTrgovina IS slabo;
+			THEN oblastTrgovina IS slabo WITH 0.5;
 	
 	RULE 81: IF prosek IS los AND administracija IS slabo
-				THEN oblastAdministracija IS slabo;
+				THEN oblastAdministracija IS slabo WITH 0.5;
 				
 	RULE 82: IF prosek IS los AND bezbednost IS slabo
-				THEN oblastBezbednost IS slabo;
+				THEN oblastBezbednost IS slabo WITH 0.5;
 				
 	RULE 83: IF prosek IS los AND estetOblik IS slabo
-				THEN oblastEstetOblik IS slabo;
+				THEN oblastEstetOblik IS slabo WITH 0.5;
 	
 	RULE 84: IF prosek IS los AND humRad IS slabo
-				THEN oblastHumRad IS slabo;
+				THEN oblastHumRad IS slabo WITH 0.5;
 	
 	RULE 85: IF prosek IS los AND kultura IS slabo
-				THEN oblastKultura IS slabo;
+				THEN oblastKultura IS slabo WITH 0.5;
 	
 	RULE 86: IF prosek IS los AND nauka IS slabo
-			THEN oblastNauka IS slabo;
+			THEN oblastNauka IS slabo WITH 0.5;
 	
 	RULE 87: IF prosek IS los AND poljoprivreda IS slabo
-			THEN oblastPoljoprivreda IS slabo;
+			THEN oblastPoljoprivreda IS slabo WITH 0.5;
 	
 	RULE 88: IF prosek IS los AND prehrana IS slabo
-			THEN oblastPrehrana IS slabo;
+			THEN oblastPrehrana IS slabo WITH 0.5;
 	
 	RULE 89: IF prosek IS los AND tehnicki IS slabo
-			THEN oblastTehnicki IS slabo;
+			THEN oblastTehnicki IS slabo WITH 0.5;
 	
 	RULE 80: IF prosek IS los AND trgovina IS slabo
-			THEN oblastTrgovina IS slabo;
+			THEN oblastTrgovina IS slabo WITH 0.5;
 	
 	RULE 81 : IF prosek IS dobar AND administracija IS ne
 			THEN oblastAdministracija IS ne;
