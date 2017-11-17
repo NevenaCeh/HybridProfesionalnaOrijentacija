@@ -3,10 +3,10 @@ package com.sample
 import domen.Oblast;
 import domen.Ispitanik;
  
-rule "Administracija jako izabrao pravnik"
+rule "Administracija jako sa svi proseci izabrao pravnik"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
+        o : Oblast( ime == "administracija", poeni >= 44.23544401247219) 
         i : Ispitanik( izabranoZanimanje == "Pravnik")
     then
     	i.setRezultat("Administracija");		
@@ -15,10 +15,10 @@ no-loop true
         update( i );
 end
 
-rule "Administracija jako izabrao racunovodja"
+rule "Administracija jako dobar i ok prosek izabrao racunovodja"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
+        o : Oblast( ime == "administracija", poeni >= 44.353041296643475) 
         i : Ispitanik( izabranoZanimanje == "Racunovodja")
     then
     	i.setRezultat("Administracija");
@@ -27,10 +27,22 @@ no-loop true
         update( i );
 end
 
-rule "Administracija jako izabrao blagajnik"
+rule "Administracija jako los prosek izabrao racunovodja"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
+        o : Oblast( ime == "administracija", poeni < 44.353041296643475) 
+        i : Ispitanik( izabranoZanimanje == "Racunovodja")
+    then
+    	i.setRezultat("Administracija");
+        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+        i.setPredlozeniFakultet("Visa poslovna skola");
+        update( i );
+end
+
+rule "Administracija jako dobar i ok prosek izabrao blagajnik"
+no-loop true
+    when
+        o : Oblast( ime == "administracija", poeni >= 44.353041296643475) 
         i : Ispitanik( izabranoZanimanje == "Blagajnik")
     then
     	i.setRezultat("Administracija");
@@ -39,15 +51,39 @@ no-loop true
         update( i );
 end
 
+rule "Administracija jako al los prosek izabrao blagajnik"
+no-loop true
+    when
+        o : Oblast( ime == "administracija", poeni < 44.353041296643475) 
+        i : Ispitanik( izabranoZanimanje == "Blagajnik")
+    then
+    	i.setRezultat("Administracija");
+        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+        i.setPredlozeniFakultet("Visa poslovna skola");
+        update( i );
+end
+
 rule "Administracija jako nije izabrao nijedan od administrativnih zanimanja"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni >= 44.46712634574988) 
+        o : Oblast( ime == "administracija", poeni >= 44.353041296643475) 
         i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
     then
     	i.setRezultat("Administracija");
         i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.setPredlozeniFakultet("Pravni fakultet ili Ekonomski fakultet");
+        update( i );
+end
+
+rule "Administracija jako al los prosek nije izabrao nijedan od administrativnih zanimanja"
+no-loop true
+    when
+        o : Oblast( ime == "administracija", poeni < 44.353041296643475) 
+        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
+    then
+    	i.setRezultat("Administracija");
+        i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+        i.setPredlozeniFakultet("Visa poslovna skola");
         update( i );
 end
 
