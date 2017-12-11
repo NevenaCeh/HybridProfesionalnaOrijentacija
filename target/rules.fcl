@@ -557,6 +557,102 @@ RULEBLOCK proforientrules
 	
 	RULE 110: IF prosek IS los AND trgovina IS ne
 			THEN oblastTrgovina IS ne;
+			
+	RULE 111: IF prosek IS los AND estetOblik IS jako AND tehnicki IS jako
+				THEN oblastEstetOblik IS jako, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 112: IF prosek IS los AND estetOblik IS jako AND nauka IS jako
+				THEN oblastEstetOblik IS jako, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 113: IF prosek IS los AND estetOblik IS jako AND trgovina IS jako
+				THEN oblastEstetOblik IS jako, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 114: IF prosek IS los AND estetOblik IS jako AND humRad IS jako
+				THEN oblastEstetOblik IS jako, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 115: IF prosek IS los AND poljoprivreda IS jako AND tehnicki IS jako 
+			THEN oblastPoljoprivreda IS jako, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 116: IF prosek IS los AND poljoprivreda IS jako AND nauka IS jako
+				THEN oblastPoljoprivreda IS jako, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 117: IF prosek IS los AND poljoprivreda IS jako AND trgovina IS jako
+				THEN oblastPoljoprivreda IS jako, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 118: IF prosek IS los AND poljoprivreda IS jako AND humRad IS jako
+				THEN oblastPoljoprivreda IS jako, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 119: IF prosek IS los AND prehrana IS jako AND tehnicki IS jako 
+			THEN oblastPrehrana IS jako, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 120: IF prosek IS los AND prehrana IS jako AND nauka IS jako
+				THEN oblastPrehrana IS jako, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 121: IF prosek IS los AND prehrana IS jako AND trgovina IS jako
+				THEN oblastPrehrana IS jako, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 122: IF prosek IS los AND prehrana IS jako AND humRad IS jako
+				THEN oblastPrehrana IS jako, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 123: IF prosek IS los AND kultura IS jako AND tehnicki IS jako 
+			THEN oblastKultura IS jako, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 124: IF prosek IS los AND kultura IS jako AND nauka IS jako
+				THEN oblastKultura IS jako, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 125: IF prosek IS los AND kultura IS jako AND trgovina IS jako
+				THEN oblastKultura IS jako, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 126: IF prosek IS los AND kultura IS jako AND humRad IS jako
+				THEN oblastKultura IS jako, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 127: IF prosek IS los AND estetOblik IS srednje AND (tehnicki IS jako OR tehnicki IS srednje)
+				THEN oblastEstetOblik IS srednje, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 128: IF prosek IS los AND estetOblik IS srednje AND (nauka IS jako OR nauka IS srednje)
+				THEN oblastEstetOblik IS srednje, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 129: IF prosek IS los AND estetOblik IS srednje AND (trgovina IS jako OR trgovina IS srednje)
+				THEN oblastEstetOblik IS srednje, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 130: IF prosek IS los AND estetOblik IS srednje AND (humRad IS jako OR humRad IS srednje)
+				THEN oblastEstetOblik IS srednje, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 131: IF prosek IS los AND poljoprivreda IS srednje AND (tehnicki IS jako OR tehnicki IS srednje)
+				THEN oblastPoljoprivreda IS srednje, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 132: IF prosek IS los AND poljoprivreda IS srednje AND (nauka IS jako OR nauka IS srednje)
+				THEN oblastPoljoprivreda IS srednje, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 133: IF prosek IS los AND poljoprivreda IS srednje AND (trgovina IS jako OR trgovina IS srednje)
+				THEN oblastPoljoprivreda IS srednje, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 134: IF prosek IS los AND poljoprivreda IS srednje AND (humRad IS jako OR humRad IS srednje)
+				THEN oblastPoljoprivreda IS srednje, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 135: IF prosek IS los AND prehrana IS srednje AND (tehnicki IS jako OR tehnicki IS srednje)
+			THEN oblastPrehrana IS srednje, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 136: IF prosek IS los AND prehrana IS srednje AND (nauka IS jako OR nauka IS srednje)
+				THEN oblastPrehrana IS srednje, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 137: IF prosek IS los AND prehrana IS srednje AND (trgovina IS jako OR trgovina IS srednje)
+				THEN oblastPrehrana IS srednje, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 138: IF prosek IS los AND prehrana IS srednje AND (humRad IS jako OR humRad IS srednje)
+				THEN oblastPrehrana IS srednje, oblastHumRad IS slabo WITH 0.5;
+	
+	RULE 139: IF prosek IS los AND kultura IS srednje AND (tehnicki IS jako OR tehnicki IS srednje)
+			THEN oblastKultura IS srednje, oblastTehnicki IS slabo WITH 0.5;
+	
+	RULE 140: IF prosek IS los AND kultura IS srednje AND (nauka IS jako OR nauka IS srednje)
+				THEN oblastKultura IS srednje, oblastNauka IS slabo WITH 0.5;
+	
+	RULE 141: IF prosek IS los AND kultura IS srednje AND (trgovina IS jako OR trgovina IS srednje)
+				THEN oblastKultura IS srednje, oblastTrgovina IS slabo WITH 0.5;
+	
+	RULE 126: IF prosek IS los AND kultura IS srednje AND (humRad IS jako OR humRad IS srednje)
+				THEN oblastKultura IS srednje, oblastHumRad IS slabo WITH 0.5;
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK
