@@ -99,17 +99,13 @@ public class Kontroler {
 	}
 
 	public void odradiEspertDeo() throws Exception {
-
 		List<Oblast> oblastisortirane = vratiListuOblasti();
-	
 		try {
-			FIS fis = FIS.load("rules/rules.fcl", true);
-			
+			FIS fis = FIS.load("rules/rules.fcl", true);			
 			if (fis == null){
 				System.err.println("Greska");
 				return;
-			}
-						
+			}						
 			fis.setVariable("prosek", ispitanik.getProsek());			
 			for (Oblast oblast : oblastisortirane) {
 				fis.setVariable(oblast.getIme(), oblast.getPoeni());				
@@ -140,9 +136,7 @@ public class Kontroler {
 			}
 			if (oblastisortirane.size() > 4) {
 				oblastisortirane = oblastisortirane.subList(0, 4);
-			}			
-			//reseneOblasti = oblastisortirane;
-			
+			}						
 			List<String> dapopunimo = new ArrayList<String>();
 			for (Oblast oblast : oblastisortirane) {
 				dapopunimo.add(oblast.getIme());
@@ -157,10 +151,10 @@ public class Kontroler {
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
-        	for (Oblast oblast : reseneOblasti) {
+        	for (Oblast oblast : oblastisortirane) {
         		kSession.insert(oblast);
-                //kSession.insert(ispitanik);                                
-                kSession.fireAllRules();
+                kSession.insert(ispitanik);                                
+            	kSession.fireAllRules();
 			}  
         	System.out.println(ispitanik);
             //System.out.println(ispitanik+ " predlazemo mu "+ispitanik.getPredlozeniFakultet());
@@ -213,10 +207,10 @@ public class Kontroler {
 
 	private int postaviNivo(double poeni) {
 		int nivo = 1; //ne
-		if (poeni >18 && poeni <=28) {
+		if (poeni >18 && poeni <=29) {
 			nivo = 2;
 		}
-		if (poeni >28 && poeni <=40) {
+		if (poeni >29 && poeni <=40) {
 			nivo = 3;
 		}
 		if (poeni >40) {

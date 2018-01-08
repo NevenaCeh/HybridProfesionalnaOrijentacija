@@ -1,5 +1,6 @@
 package domen;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Ispitanik {
@@ -95,7 +96,10 @@ public class Ispitanik {
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
-	public Ispitanik(){}	
+	public Ispitanik(){
+		objasnjenja = new ArrayList<>();
+		predlozeniFakulteti = new ArrayList<>();
+	}	
 	
 	public double getProsek() {
 		return prosek;
