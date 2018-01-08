@@ -2,31 +2,37 @@ package com.sample
  
 import domen.Oblast;
 import domen.Ispitanik;
- 
+import java.util.*;
+
+
 rule "Administracija jako sa svi prosecima izabrao pravnik"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni >= 44.23544401247219) 
+        o : Oblast( ime == "administracija", poeni >= 23.99994313242919)  
         i : Ispitanik( izabranoZanimanje == "Pravnik")
     then
-    	i.setRezultat("Administracija");		
-        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
-        i.setPredlozeniFakultet("Pravni fakultet");
+    i.getObjasnjenja().add("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+    i.getPredlozeniFakulteti().add("Pravni fakultet");
+    	//i.setRezultat("Administracija");		
+        //i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+        //i.setPredlozeniFakultet("Pravni fakultet");
         update( i );
 end
 
 rule "Administracija jako dobar i ok prosek izabrao racunovodja"
 no-loop true
     when
-        o : Oblast( ime == "administracija", poeni >= 44.353041296643475) 
+        o : Oblast( ime == "administracija", (poeni >= 31.066944631624594 && nivo>2) || (poeni >= 44.353041296643475 && nivo>2)) 
         i : Ispitanik( izabranoZanimanje == "Racunovodja")
     then
-    	i.setRezultat("Administracija");
-        i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
-        i.setPredlozeniFakultet("Ekonomski fakultet");
+    i.getObjasnjenja().add("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+    i.getPredlozeniFakulteti().add("Ekonomski fakultet");
+    //	i.setRezultat("Administracija");
+    //    i.setObjasnjenje("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: \nFinansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, \nracunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije \n(sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+    //    i.setPredlozeniFakultet("Ekonomski fakultet");
         update( i );
 end
-
+/*
 rule "Administracija jako los prosek izabrao racunovodja"
 no-loop true
     when
@@ -145,7 +151,7 @@ no-loop true
         i.setObjasnjenje("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
         i.setPredlozeniFakultet("Fakultet bezbednosti, ako se resite da dobro spremite prijemni ispit. Ako ne preporucujemo Vam i razne obuke (za vatrogasce, obezbedjenja)");
         update( i );
-end
+end*/
 
 rule "Bezbednost jako dobar prosek nije izabrao nijedan od bezbednosnih zanimanja"
 no-loop true
@@ -153,12 +159,15 @@ no-loop true
         o : Oblast( ime == "bezbednost", poeni >= 44.46712634574988) 
         i : Ispitanik( izabranoZanimanje != "Policajac" && izabranoZanimanje != "Vojno lice")
     then
-    i.setRezultat("Bezbednost");
-        i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
-        i.setPredlozeniFakultet("Ako se resite za ovu oblast, preporucujemo Vam Vojnu ili Policijsku akademiju");
+    i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
+    
+    i.getPredlozeniFakulteti().add("Ako se resite za ovu oblast, preporucujemo Vam Vojnu ili Policijsku akademiju");
+  //  i.setRezultat("Bezbednost");
+ //       i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, \nsprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: \nRad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, \ncarinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, \ninstruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
+  //      i.setPredlozeniFakultet("Ako se resite za ovu oblast, preporucujemo Vam Vojnu ili Policijsku akademiju");
         update( i );
 end
-
+/*
 rule "Bezbednost jako ok prosek nije izabrao nijedan od bezbednosnih zanimanja"
 no-loop true
     when
@@ -578,4 +587,4 @@ rule "Hum rad nije izabrao ponudjeno ok i los prosek"
 		i.setObjasnjenje("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: \nlekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, \nrad u decijim domovima, rad u maloletnickom zatvoru.");
 		i.setPredlozeniFakultet("Visa medicinska skola");
 		update(i);
-end
+end*/

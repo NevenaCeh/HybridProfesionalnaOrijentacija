@@ -22,8 +22,8 @@ public class DBKonekcija {
 			ResultSet rs = st.executeQuery(upit);
 			while (rs.next()) {
 				
-				String jmbg = rs.getString("jmbg");
-				String ime = rs.getString("imePrezime");
+				String jmbg = rs.getString("maticni");
+				String ime = rs.getString("ime")+" "+rs.getString("prezime");
 				double prosek = rs.getDouble("prosek");
 				Ispitanik i = new Ispitanik();
 				i.setJmbg(jmbg);
@@ -40,15 +40,21 @@ public class DBKonekcija {
 		return lista;		
 	}
 
-	public void ubaciUBazu(String jmbg, String ime, double prosek) {
+	public void ubaciUBazu(String jmbg, String ime, double prosek, String izabrano) {
 		// TODO Auto-generated method stub
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/proforijentacija", "root", "");
-			String upit = "INSERT INTO ispitanik VALUES (?,?,?)";
+			String upit = "INSERT INTO ispitanik VALUES (?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(upit);
 			ps.setString(1, jmbg);
-			ps.setString(2, ime);
-			ps.setDouble(3, prosek);
+			int lastindex = ime.lastIndexOf(" ");
+			String imeime = ime.substring(0, lastindex).trim();
+			String prezime = ime.substring(lastindex).trim();
+			ps.setString(2, imeime);
+			ps.setString(3, prezime);
+			ps.setDouble(4, prosek);
+			ps.setString(5, izabrano);
+			
 			ps.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {

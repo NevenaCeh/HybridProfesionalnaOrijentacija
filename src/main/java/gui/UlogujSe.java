@@ -14,6 +14,8 @@ import javax.swing.JTextField;
 import com.sun.org.apache.xerces.internal.util.DraconianErrorHandler;
 
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 import kontroler.Kontroler;
@@ -88,8 +90,7 @@ public class UlogujSe extends JDialog {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 					// TODO Auto-generated catch block
 					//e.printStackTrace();
-				}
-				
+				}				
 			}
 
 			private double validacija(String ime, String jmbg, String prva, String druga, String treca) throws Exception {

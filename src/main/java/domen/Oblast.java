@@ -4,7 +4,23 @@ public class Oblast {
 
 	private double poeni;
 	private String ime;
+	private int nivo;
 	
+	public Oblast(double poeni, String ime, int nivo) {
+		super();
+		this.poeni = poeni;
+		this.ime = ime;
+		this.nivo = nivo;
+	}
+
+	public int getNivo() {
+		return nivo;
+	}
+
+	public void setNivo(int nivo) {
+		this.nivo = nivo;
+	}
+
 	public Oblast() {
 	}
 	
@@ -28,7 +44,8 @@ public class Oblast {
 
 	@Override
 	public String toString() {
-		return "Oblast [poeni=" + poeni + ", ime=" + ime + "]";
-	}	
-	
+		return "Oblast [poeni=" + poeni + ", ime=" + ime + ", nivo=" + nivo + "]";
+	}
+
+
 }

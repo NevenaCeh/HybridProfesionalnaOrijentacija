@@ -1,5 +1,7 @@
 package domen;
 
+import java.util.List;
+
 public class Ispitanik {
 	
 	private String imePrezime;
@@ -16,17 +18,10 @@ public class Ispitanik {
 	private int bodoviTrgovina = 0;
 	private int bodoviEstetOblik = 0;
 	private int bodoviHumRad = 0;
-	private String rezultat = "nepoznato";
-	private String objasnjenje = "nepoznato";
-	private String predlozeniFakultet = "nepoznato";
-	
-	public String getObjasnjenje() {
-		return objasnjenje;
-	}
-	public void setObjasnjenje(String objasnjenje) {
-		this.objasnjenje = objasnjenje;
-	}
-	
+	private List<String> oblasti;
+	private List<String> objasnjenja;
+	private List<String> predlozeniFakulteti;
+		
 	public int getBodoviAdministracija() {
 		return bodoviAdministracija;
 	}
@@ -87,12 +82,7 @@ public class Ispitanik {
 	public void setBodoviHumRad(int bodoviHumRad) {
 		this.bodoviHumRad = bodoviHumRad;
 	}
-	public String getRezultat() {
-		return rezultat;
-	}
-	public void setRezultat(String rezultat) {
-		this.rezultat = rezultat;
-	}
+
 	public String getImePrezime() {
 		return imePrezime;
 	}
@@ -105,14 +95,7 @@ public class Ispitanik {
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
 	}
-	public Ispitanik(){}
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Ispitanik [rezultat=" + rezultat +" ]";
-	}
+	public Ispitanik(){}	
 	
 	public double getProsek() {
 		return prosek;
@@ -120,12 +103,7 @@ public class Ispitanik {
 	public void setProsek(double prosek) {
 		this.prosek = prosek;
 	}
-	public String getPredlozeniFakultet() {
-		return predlozeniFakultet;
-	}
-	public void setPredlozeniFakultet(String predlozeniFakultet) {
-		this.predlozeniFakultet = predlozeniFakultet;
-	}
+
 	public String getIzabranoZanimanje() {
 		return izabranoZanimanje;
 	}
@@ -147,6 +125,34 @@ public class Ispitanik {
 		} else if (!jmbg.equals(other.jmbg))
 			return false;
 		return true;
+	}
+	public List<String> getOblasti() {
+		return oblasti;
+	}
+	public void setOblasti(List<String> oblasti) {
+		this.oblasti = oblasti;
+	}
+	public List<String> getObjasnjenja() {
+		return objasnjenja;
+	}
+	public void setObjasnjenja(List<String> objasnjenja) {
+		this.objasnjenja = objasnjenja;
+	}
+	public List<String> getPredlozeniFakulteti() {
+		return predlozeniFakulteti;
+	}
+	public void setPredlozeniFakulteti(List<String> predlozeniFakulteti) {
+		this.predlozeniFakulteti = predlozeniFakulteti;
+	}
+	@Override
+	public String toString() {
+		return "Ispitanik [imePrezime=" + imePrezime + ", jmbg=" + jmbg + ", prosek=" + prosek + ", izabranoZanimanje="
+				+ izabranoZanimanje + ", bodoviAdministracija=" + bodoviAdministracija + ", bodoviBezbednost="
+				+ bodoviBezbednost + ", bodoviTehnicki=" + bodoviTehnicki + ", bodoviKultura=" + bodoviKultura
+				+ ", bodoviNauka=" + bodoviNauka + ", bodoviPoljoprivreda=" + bodoviPoljoprivreda + ", bodoviPrehrana="
+				+ bodoviPrehrana + ", bodoviTrgovina=" + bodoviTrgovina + ", bodoviEstetOblik=" + bodoviEstetOblik
+				+ ", bodoviHumRad=" + bodoviHumRad + ", oblasti=" + oblasti + ", objasnjenja=" + objasnjenja
+				+ ", predlozeniFakulteti=" + predlozeniFakulteti + "]";
 	}
 
 	
