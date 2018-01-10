@@ -16,22 +16,7 @@ import javax.swing.JTextField;
 
 public class Konacnaaaa extends JDialog {
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			Konacnaaaa dialog = new Konacnaaaa();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	/**
-	 * Create the dialog.
-	 */
 	public Konacnaaaa() {
 		setBounds(100, 100, 701, 412);
 		getContentPane().setLayout(null);
