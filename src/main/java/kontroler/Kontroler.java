@@ -206,7 +206,7 @@ public class Kontroler {
 	}
 
 	private int postaviNivo(double poeni) {
-		int nivo = 1; //ne
+		int nivo = 1;
 		if (poeni >18 && poeni <=29) {
 			nivo = 2;
 		}

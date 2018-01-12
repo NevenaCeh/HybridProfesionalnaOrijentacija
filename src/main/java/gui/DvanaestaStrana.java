@@ -518,7 +518,8 @@ public class DvanaestaStrana extends JDialog {
 				if (jrbDesetoJako.isSelected()) {
 					Kontroler.getInstanca().postaviBodoveHumRad(4);
 				}
-				Konacnaaaa kon = new Konacnaaaa();
+				Kontroler.getInstanca().odradiEspertDeo();
+				StranaSaRezultatima kon = new StranaSaRezultatima(Kontroler.getInstanca().getIspitanik().getOblasti().size());
 				kon.setVisible(true);
 				dispose();
 			}
