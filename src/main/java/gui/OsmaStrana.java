@@ -21,22 +21,6 @@ public class OsmaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			OsmaStrana dialog = new OsmaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public OsmaStrana() {
 		setBounds(100, 100, 564, 486);
 		getContentPane().setLayout(new BorderLayout());

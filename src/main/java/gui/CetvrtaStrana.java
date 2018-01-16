@@ -21,22 +21,6 @@ public class CetvrtaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			CetvrtaStrana dialog = new CetvrtaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public CetvrtaStrana() {
 		setBounds(100, 100, 616, 486);
 		getContentPane().setLayout(new BorderLayout());

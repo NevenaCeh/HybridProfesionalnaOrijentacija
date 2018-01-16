@@ -21,22 +21,6 @@ public class TrecaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			TrecaStrana dialog = new TrecaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public TrecaStrana() {
 		setBounds(100, 100, 564, 486);
 		getContentPane().setLayout(new BorderLayout());

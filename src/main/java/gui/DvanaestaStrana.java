@@ -21,22 +21,6 @@ public class DvanaestaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			DvanaestaStrana dialog = new DvanaestaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public DvanaestaStrana() {
 		setBounds(100, 100, 584, 486);
 		getContentPane().setLayout(new BorderLayout());
@@ -77,7 +61,7 @@ public class DvanaestaStrana extends JDialog {
 		
 		JLabel lblFizickiObezbedjivatiJavne = new JLabel("112. Strazariti na zapovednickom mostu vojnog broda");
 		lblFizickiObezbedjivatiJavne.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		lblFizickiObezbedjivatiJavne.setBounds(10, 78, 228, 14);
+		lblFizickiObezbedjivatiJavne.setBounds(10, 78, 250, 14);
 		contentPanel.add(lblFizickiObezbedjivatiJavne);
 		
 		JRadioButton jrbDrugoNe = new JRadioButton("Ne");
@@ -528,5 +512,6 @@ public class DvanaestaStrana extends JDialog {
 		btnNastavi.setBounds(214, 412, 115, 23);
 		contentPanel.add(btnNastavi);
 	}
-
 }
+
+

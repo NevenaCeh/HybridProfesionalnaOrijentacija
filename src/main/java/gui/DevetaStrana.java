@@ -21,22 +21,6 @@ public class DevetaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			DevetaStrana dialog = new DevetaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public DevetaStrana() {
 		setBounds(100, 100, 578, 486);
 		getContentPane().setLayout(new BorderLayout());

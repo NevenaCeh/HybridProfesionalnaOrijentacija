@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -46,12 +48,14 @@ public class Pocetna extends JFrame {
 		btnZapocniTest.setBounds(163, 113, 110, 23);
 		contentPane.add(btnZapocniTest);
 		
-		JLabel lblUpozorenjeOvajTest = new JLabel("Upozorenje!!!! ");
-		lblUpozorenjeOvajTest.setBounds(173, 147, 86, 14);
+		JLabel lblUpozorenjeOvajTest = new JLabel("Upozorenje!!!!".toUpperCase());
+		lblUpozorenjeOvajTest.setBounds(173, 147, 100, 14);
+		lblUpozorenjeOvajTest.setForeground(Color.RED);
 		contentPane.add(lblUpozorenjeOvajTest);
 		
 		JLabel lblNewLabel_1 = new JLabel("Ovaj test je moguce raditi samo jednom!!!");
 		lblNewLabel_1.setBounds(116, 172, 252, 14);
 		contentPane.add(lblNewLabel_1);
+		lblNewLabel_1.setForeground(Color.red);
 	}
 }

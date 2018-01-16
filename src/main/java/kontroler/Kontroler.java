@@ -21,16 +21,12 @@ public class Kontroler {
 	private static Kontroler instanca;
 	private Ispitanik ispitanik;
 	DBKonekcija db;
-	private List<Oblast> reseneOblasti;
-	private List<String> objasnjenja;
-	private List<String> fakulteti;
+	//private List<Oblast> reseneOblasti;
 	
 	private Kontroler(){
 		ispitanik = new Ispitanik();
 		db = new DBKonekcija();
-		reseneOblasti = new ArrayList<>();
-		objasnjenja = new ArrayList<>();
-		fakulteti = new ArrayList<>();
+		//reseneOblasti = new ArrayList<>();
 	}
 	
 	public static Kontroler getInstanca() {
@@ -51,6 +47,7 @@ public class Kontroler {
 	public void postaviBodoveAdministracije(int poen){
 		int sadIma = ispitanik.getBodoviAdministracija();
 		ispitanik.setBodoviAdministracija(sadIma+poen);
+		System.out.println(ispitanik.getBodoviAdministracija());
 	}
 	
 	public void postaviBodoveBezbednost(int poen){
@@ -86,6 +83,7 @@ public class Kontroler {
 	public void postaviBodoveTrgovina(int poen){
 		int sadIma = ispitanik.getBodoviTrgovina();
 		ispitanik.setBodoviTrgovina(sadIma+poen);
+		System.out.println(ispitanik.getBodoviTrgovina());
 	}
 	
 	public void postaviBodoveEstObl(int poen){
@@ -152,15 +150,14 @@ public class Kontroler {
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
         	for (Oblast oblast : oblastisortirane) {
+        		System.out.println(oblast);
         		kSession.insert(oblast);
                 kSession.insert(ispitanik);                                
             	kSession.fireAllRules();
 			}  
         	System.out.println(ispitanik);
-            //System.out.println(ispitanik+ " predlazemo mu "+ispitanik.getPredlozeniFakultet());
         } catch (Throwable t) {
         	throw new Exception("Greska jer "+t.getMessage());
-        	//JOptionPane.showMessageDialog(null, "problem zbog "+t.getMessage());
         }		
 	}
 	
@@ -217,47 +214,6 @@ public class Kontroler {
 			nivo = 4;
 		}
 		return nivo;
-	}
-
-	private Oblast nadjikojihpoenaimanajvise() {
-		List<Oblast> sveoblasti = new ArrayList<>();
-		double adm = ispitanik.getBodoviAdministracija();
-		Oblast oadm = new Oblast(adm, "administracija");
-		sveoblasti.add(oadm);		
-		double bez = ispitanik.getBodoviBezbednost();
-		Oblast obez = new Oblast(bez, "bezbednost");
-		sveoblasti.add(obez);
-		double est = ispitanik.getBodoviEstetOblik();
-		Oblast oest = new Oblast(est, "estetOblik");
-		sveoblasti.add(oest);
-		double humrad = ispitanik.getBodoviHumRad();
-		Oblast ohumrad = new Oblast(humrad, "humRad");
-		sveoblasti.add(ohumrad);
-		double kultura = ispitanik.getBodoviKultura();
-		Oblast okultura = new Oblast(kultura, "kultura");
-		sveoblasti.add(okultura);
-		double nauka = ispitanik.getBodoviNauka();
-		Oblast onauka = new Oblast(nauka, "nauka");
-		sveoblasti.add(onauka);
-		double polj = ispitanik.getBodoviPoljoprivreda();
-		Oblast opolj = new Oblast(polj, "poljoprivreda");
-		sveoblasti.add(opolj);
-		double preh = ispitanik.getBodoviPrehrana();
-		Oblast oprehrana = new Oblast(preh, "prehrana");
-		sveoblasti.add(oprehrana);
-		double tehnicki = ispitanik.getBodoviTehnicki();
-		Oblast otehn = new Oblast(tehnicki, "tehnicki");
-		sveoblasti.add(otehn);
-		double trgovina = ispitanik.getBodoviTrgovina();
-		Oblast otrg = new Oblast(trgovina, "trgovina");		
-		sveoblasti.add(otrg);
-		Oblast max = new Oblast(0, "null");
-		for (Oblast obl: sveoblasti) {
-			if (obl.getPoeni() > max.getPoeni()) {
-				max = obl;
-			}
-		}
-		return max;
 	}
 
 	public Ispitanik getIspitanik() {

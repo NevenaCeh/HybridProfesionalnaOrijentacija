@@ -21,22 +21,6 @@ public class SedmaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			SedmaStrana dialog = new SedmaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public SedmaStrana() {
 		setBounds(100, 100, 562, 486);
 		getContentPane().setLayout(new BorderLayout());

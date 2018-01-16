@@ -24,22 +24,6 @@ public class PrvaStrana extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			PrvaStrana dialog = new PrvaStrana();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
 	public PrvaStrana() {
 		setBounds(100, 100, 534, 486);
 		getContentPane().setLayout(new BorderLayout());
