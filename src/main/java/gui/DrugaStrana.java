@@ -511,6 +511,17 @@ public class DrugaStrana extends JDialog {
 
 		btnNastavi.setBounds(214, 412, 115, 23);
 		contentPanel.add(btnNastavi);
+		
+		jrbCetvrtoNe.setSelected(true);
+		jrbDesetoNe.setSelected(true);
+		jrbDevetoNe.setSelected(true);
+		jrbDrugoNe.setSelected(true);
+		jrbOsmoNe.setSelected(true);
+		jrbPetoNe.setSelected(true);
+		jrbPrviNe.setSelected(true);
+		jrbTreceNe.setSelected(true);
+		jrbSedmoNe.setSelected(true);
+		jrbSestoNe.setSelected(true);
 		}
 		
 
