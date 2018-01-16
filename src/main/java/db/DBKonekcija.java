@@ -13,8 +13,7 @@ import domen.*;
 public class DBKonekcija {
 
 	public List<Ispitanik> vratiListuIspitanika(){
-		List<Ispitanik> lista = new ArrayList<Ispitanik>();
-		
+		List<Ispitanik> lista = new ArrayList<Ispitanik>();		
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/proforijentacija", "root", "");
 			String upit = "SELECT * FROM ispitanik";
@@ -39,9 +38,36 @@ public class DBKonekcija {
 		
 		return lista;		
 	}
+	
+	public List<Oblast> vratiListuOblasti(){
+		List<Oblast> lista = new ArrayList<Oblast>();		
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/proforijentacija", "root", "");
+			String upit = "SELECT * FROM oblast";
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery(upit);
+			while (rs.next()) {
+				
+				//long jmbg = rs.getLong("id");
+				String ime = rs.getString("ime");
+				String objasnjenje = rs.getString("objasnjenje");
+				String skraceno = rs.getString("skraceno");
+				Oblast o = new Oblast();
+				o.setIme(skraceno);
+				o.setPunoime(ime);
+				o.setObjasnjenje(objasnjenje);
+				lista.add(o);
+			}
+			conn.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		return lista;		
+	}
 
 	public void ubaciUBazu(String jmbg, String ime, double prosek, String izabrano) {
-		// TODO Auto-generated method stub
 		try {
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/proforijentacija", "root", "");
 			String upit = "INSERT INTO ispitanik VALUES (?,?,?,?,?)";
@@ -53,8 +79,7 @@ public class DBKonekcija {
 			ps.setString(2, imeime);
 			ps.setString(3, prezime);
 			ps.setDouble(4, prosek);
-			ps.setString(5, izabrano);
-			
+			ps.setString(5, izabrano);			
 			ps.executeUpdate();
 			conn.close();
 		} catch (SQLException e) {

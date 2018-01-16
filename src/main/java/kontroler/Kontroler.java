@@ -15,18 +15,17 @@ import org.kie.api.runtime.KieSession;
 import db.DBKonekcija;
 import domen.Ispitanik;
 import domen.Oblast;
+import gui.Pocetna;
 
 public class Kontroler {
 
 	private static Kontroler instanca;
 	private Ispitanik ispitanik;
 	DBKonekcija db;
-	//private List<Oblast> reseneOblasti;
 	
 	private Kontroler(){
 		ispitanik = new Ispitanik();
 		db = new DBKonekcija();
-		//reseneOblasti = new ArrayList<>();
 	}
 	
 	public static Kontroler getInstanca() {
@@ -35,6 +34,12 @@ public class Kontroler {
 		}
 		return instanca;
 	}
+	
+	public static final void main(String[] args) {
+    	Pocetna p = new Pocetna();
+    	p.setLocationRelativeTo(null);
+    	p.setVisible(true);
+    }
 	
 	public void postaviPrvePodatke(String ime, String jmbg, double prosek, String izabrano){
 		ispitanik.setImePrezime(ime);
@@ -47,7 +52,6 @@ public class Kontroler {
 	public void postaviBodoveAdministracije(int poen){
 		int sadIma = ispitanik.getBodoviAdministracija();
 		ispitanik.setBodoviAdministracija(sadIma+poen);
-		System.out.println(ispitanik.getBodoviAdministracija());
 	}
 	
 	public void postaviBodoveBezbednost(int poen){
@@ -83,7 +87,6 @@ public class Kontroler {
 	public void postaviBodoveTrgovina(int poen){
 		int sadIma = ispitanik.getBodoviTrgovina();
 		ispitanik.setBodoviTrgovina(sadIma+poen);
-		System.out.println(ispitanik.getBodoviTrgovina());
 	}
 	
 	public void postaviBodoveEstObl(int poen){
@@ -98,67 +101,105 @@ public class Kontroler {
 
 	public void odradiEspertDeo() throws Exception {
 		List<Oblast> oblastisortirane = vratiListuOblasti();
-		try {
-			FIS fis = FIS.load("rules/rules.fcl", true);			
-			if (fis == null){
-				System.err.println("Greska");
-				return;
-			}						
-			fis.setVariable("prosek", ispitanik.getProsek());			
-			for (Oblast oblast : oblastisortirane) {
-				fis.setVariable(oblast.getIme(), oblast.getPoeni());				
+		//ekstremni slucajevi
+		boolean ekstrem = false;
+		//svi su ne
+		int ne = 0;
+		int svijaki = 0;
+		for (Oblast oblast : oblastisortirane) {
+			if (oblast.getNivo() == 1) {
+				ne+=1;
 			}
-			fis.evaluate();
-		
-			for (Oblast oblast : oblastisortirane) {
-				String oblastzadefuzify = "asd";
-				if(oblast.getIme() == "administracija"){ oblastzadefuzify = "oblastAdministracija";}
-				if(oblast.getIme() == "bezbednost"){oblastzadefuzify = "oblastBezbednost";}
-				if(oblast.getIme() == "estetOblik"){oblastzadefuzify = "oblastEstetOblik";}
-				if(oblast.getIme() == "humRad"){oblastzadefuzify = "oblastHumRad";}
-				if(oblast.getIme() == "kultura"){oblastzadefuzify = "oblastKultura";}
-				if(oblast.getIme() == "nauka"){oblastzadefuzify = "oblastNauka";}
-				if(oblast.getIme() == "poljoprivreda"){oblastzadefuzify = "oblastPoljoprivreda";}
-				if(oblast.getIme() == "prehrana"){oblastzadefuzify = "oblastPrehrana";}
-				if(oblast.getIme() == "tehnicki"){oblastzadefuzify = "oblastTehnicki";}
-				if(oblast.getIme() == "trgovina"){oblastzadefuzify = "oblastTrgovina";}			
-				double oblastsafuzzypoenima = fis.getVariable(oblastzadefuzify).defuzzify();
-				oblast.setPoeni(oblastsafuzzypoenima);			
-			}			
-			Iterator<Oblast> it = oblastisortirane.iterator();
-			while (it.hasNext()) {
-			   Oblast o = it.next();
-			   if (o.getNivo() == 1) {
-				   it.remove();
-				}
+			if (oblast.getNivo() == 4) {
+				svijaki+=1;
 			}
-			if (oblastisortirane.size() > 4) {
-				oblastisortirane = oblastisortirane.subList(0, 4);
-			}						
-			List<String> dapopunimo = new ArrayList<String>();
-			for (Oblast oblast : oblastisortirane) {
-				dapopunimo.add(oblast.getIme());
-			}	
-			
-			for (String string : dapopunimo) {
-				System.out.println(string);
+		}
+		if (ne == 10) {
+			ekstrem = true;
+		}else if (svijaki == 10) {
+			ekstrem = true;
+		}
+		if (ekstrem) {
+			//ispitanik.setOblasti(dapopunimo);
+			Oblast ekstremoblast = new Oblast(0, "ekstrem");
+            if (ne == 10) {
+				ekstremoblast.setNivo(1);				
+			}else {
+				ekstremoblast.setNivo(4);
 			}
-			ispitanik.setOblasti(dapopunimo);
-												
-            // load up the knowledge base
+            ispitanik.getOblasti().add("Obavezno ponovno testiranje!!!");
+			// load up the knowledge base
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
         	KieSession kSession = kContainer.newKieSession("ksession-rules");
-        	for (Oblast oblast : oblastisortirane) {
-        		System.out.println(oblast);
-        		kSession.insert(oblast);
+        		
+        		kSession.insert(ekstremoblast);
                 kSession.insert(ispitanik);                                
             	kSession.fireAllRules();
-			}  
+			 
         	System.out.println(ispitanik);
-        } catch (Throwable t) {
-        	throw new Exception("Greska jer "+t.getMessage());
-        }		
+		}else {
+			try {
+				FIS fis = FIS.load("rules/rules.fcl", true);			
+				if (fis == null){
+					System.err.println("Greska, nema rules.fcl fajla");
+					return;
+				}						
+				fis.setVariable("prosek", ispitanik.getProsek());			
+				for (Oblast oblast : oblastisortirane) {
+					fis.setVariable(oblast.getIme(), oblast.getPoeni());				
+				}
+				fis.evaluate();
+			
+				for (Oblast oblast : oblastisortirane) {
+					String oblastzadefuzify = "asd";
+					if(oblast.getIme() == "administracija"){ oblastzadefuzify = "oblastAdministracija";}
+					if(oblast.getIme() == "bezbednost"){oblastzadefuzify = "oblastBezbednost";}
+					if(oblast.getIme() == "estetOblik"){oblastzadefuzify = "oblastEstetOblik";}
+					if(oblast.getIme() == "humRad"){oblastzadefuzify = "oblastHumRad";}
+					if(oblast.getIme() == "kultura"){oblastzadefuzify = "oblastKultura";}
+					if(oblast.getIme() == "nauka"){oblastzadefuzify = "oblastNauka";}
+					if(oblast.getIme() == "poljoprivreda"){oblastzadefuzify = "oblastPoljoprivreda";}
+					if(oblast.getIme() == "prehrana"){oblastzadefuzify = "oblastPrehrana";}
+					if(oblast.getIme() == "tehnicki"){oblastzadefuzify = "oblastTehnicki";}
+					if(oblast.getIme() == "trgovina"){oblastzadefuzify = "oblastTrgovina";}			
+					double oblastsafuzzypoenima = fis.getVariable(oblastzadefuzify).defuzzify();
+					oblast.setPoeni(oblastsafuzzypoenima);			
+				}			
+				Iterator<Oblast> it = oblastisortirane.iterator();
+				while (it.hasNext()) {
+				   Oblast o = it.next();
+				   if (o.getNivo() == 1) {
+					   it.remove();
+					}
+				}
+				if (oblastisortirane.size() > 4) {
+					oblastisortirane = oblastisortirane.subList(0, 4);
+				}						
+				List<String> dapopunimo = new ArrayList<String>();
+				for (Oblast oblast : oblastisortirane) {
+					dapopunimo.add(oblast.getIme());
+				}					
+				for (String string : dapopunimo) {
+					System.out.println(string);
+				}
+				ispitanik.setOblasti(dapopunimo);
+													
+	            // load up the knowledge base
+		        KieServices ks = KieServices.Factory.get();
+	    	    KieContainer kContainer = ks.getKieClasspathContainer();
+	        	KieSession kSession = kContainer.newKieSession("ksession-rules");
+	        	for (Oblast oblast : oblastisortirane) {
+	        		kSession.insert(oblast);
+	                kSession.insert(ispitanik);                                
+	            	kSession.fireAllRules();
+				}  
+	        	System.out.println(ispitanik);
+	        } catch (Throwable t) {
+	        	throw new Exception("Greska jer "+t.getMessage());
+	        }		
+		}
+		
 	}
 	
 	private List<Oblast> vratiListuOblasti(){
@@ -227,6 +268,10 @@ public class Kontroler {
 				throw new Exception("Osoba sa ovim podacima je vec radila test!!!");
 			}			
 		}		
+	}
+
+	public List<Oblast> vratiListuOblastiIzBaze() {
+		return db.vratiListuOblasti();
 	}
 	
 	

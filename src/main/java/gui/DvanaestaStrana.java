@@ -345,7 +345,7 @@ public class DvanaestaStrana extends JDialog {
 					nastaviDalje();
 				} catch (Exception e1) {
 					// TODO Auto-generated catch block
-					//e1.printStackTrace();
+					e1.printStackTrace();
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
 			}

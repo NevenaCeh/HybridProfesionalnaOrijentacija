@@ -129,11 +129,8 @@ public class UlogujSe extends JDialog {
 					double rezultat = izracunajProsek(prvabr, drugabr, trbr);
 					return rezultat;
 				} catch (NumberFormatException e) {
-					// TODO: handle exception
 					throw new Exception("Upisite broj u formatu cc.cc!!!");
-				}
-
-				
+				}	
 			}
 
 			private double izracunajProsek(double prva, double druga, double treca) {

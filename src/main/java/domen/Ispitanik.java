@@ -97,6 +97,7 @@ public class Ispitanik {
 		this.jmbg = jmbg;
 	}
 	public Ispitanik(){
+		oblasti = new ArrayList<>();
 		objasnjenja = new ArrayList<>();
 		predlozeniFakulteti = new ArrayList<>();
 	}	

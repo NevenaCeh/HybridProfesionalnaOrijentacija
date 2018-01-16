@@ -5,6 +5,8 @@ public class Oblast {
 	private double poeni;
 	private String ime;
 	private int nivo;
+	private String objasnjenje;
+	private String punoime;
 	
 	public Oblast(double poeni, String ime, int nivo) {
 		super();
@@ -47,5 +49,23 @@ public class Oblast {
 		return "Oblast [poeni=" + poeni + ", ime=" + ime + ", nivo=" + nivo + "]";
 	}
 
+	public String getObjasnjenje() {
+		return objasnjenje;
+	}
+
+	public void setObjasnjenje(String objasnjenje) {
+		this.objasnjenje = objasnjenje;
+	}
+
+	public String getPunoime() {
+		return punoime;
+	}
+
+	public void setPunoime(String punoime) {
+		this.punoime = punoime;
+	}
+
+	
+	
 
 }
