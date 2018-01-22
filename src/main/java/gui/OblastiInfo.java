@@ -52,7 +52,6 @@ public class OblastiInfo extends JDialog {
 			
 			@Override
 			public void adjustmentValueChanged(AdjustmentEvent e) {
-				// TODO Auto-generated method stub
 				System.out.println(e.getValue()+"");
 			}
 		};

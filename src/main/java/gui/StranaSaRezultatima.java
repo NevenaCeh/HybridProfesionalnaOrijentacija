@@ -1,11 +1,15 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -14,6 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
 import kontroler.Kontroler;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
 
 public class StranaSaRezultatima extends JDialog {
 
@@ -28,11 +36,19 @@ public class StranaSaRezultatima extends JDialog {
 	private JButton btnPan2;
 	private JButton btnPan3;
 	private JButton btnPan4;
+	private JLabel lblPreporucujemoVam;
+	private JLabel lblZaBroj;
+	private JLabel lblOblasti;
+	private JLabel lblError;
 	
 	public StranaSaRezultatima(int brojOblasti) {
-		setBounds(100, 100, 1000, 627);
-		//setUndecorated(true); 
-		//setBounds(GraphicsEnvironment.getLocalGraphicsEnvironment().getMaximumWindowBounds()); 
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				Kontroler.getInstanca().vratiPocetnu();
+			}
+		});
+		setBounds(100, 100, 923, 520);
 		getContentPane().setLayout(null);
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -41,27 +57,42 @@ public class StranaSaRezultatima extends JDialog {
 		this.brojOblasti = brojOblasti;
 		
 		JLabel lblNewLabel = new JLabel("Postovani");
-		lblNewLabel.setBounds(22, 35, 56, 14);
+		lblNewLabel.setBounds(22, 13, 56, 14);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblIme = new JLabel("ime");
-		lblIme.setBounds(107, 35, 305, 14);
+		lblIme.setBounds(104, 13, 351, 14);
+		Font font = lblIme.getFont();
+		lblIme.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
+		lblIme.setFont(font.deriveFont(font.getStyle() | Font.ITALIC));
 		getContentPane().add(lblIme);
 		lblIme.setText(Kontroler.getInstanca().getIspitanik().getImePrezime());
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(599, 35, 333, 159);
+		panel.setBounds(470, 35, 422, 167);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblProsek = new JLabel("Prosek");
-		lblProsek.setBounds(141, 27, 56, 16);
+		lblProsek.setBounds(141, 27, 239, 16);
+		Font f = lblProsek.getFont();
+		lblProsek.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
+		//lblProsek.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
 		panel.add(lblProsek);
 		lblProsek.setText(Kontroler.getInstanca().getIspitanik().getProsek()+"");
 		
-		JLabel lblIzabranoZanimanje = new JLabel("Izabrano zanimanje");
-		lblIzabranoZanimanje.setBounds(141, 68, 132, 66);
+		JTextArea lblIzabranoZanimanje = new JTextArea("Izabrano zanimanje");
+		lblIzabranoZanimanje.setBounds(141, 68, 239, 66);
+		Font f1 = lblIzabranoZanimanje.getFont();
+		lblIzabranoZanimanje.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
 		panel.add(lblIzabranoZanimanje);
+		lblIzabranoZanimanje.setEditable(false);
+		lblIzabranoZanimanje.setLineWrap(true);
+		lblIzabranoZanimanje.setWrapStyleWord(true);
+		lblIzabranoZanimanje.setOpaque(false);
+		//lblIzabranoZanimanje.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		lblIzabranoZanimanje.setAlignmentX(CENTER_ALIGNMENT);
+		lblIzabranoZanimanje.setAlignmentY(CENTER_ALIGNMENT);
 		lblIzabranoZanimanje.setText(Kontroler.getInstanca().getIspitanik().getIzabranoZanimanje());		
 		
 		JLabel lblProsekNeMenjaj = new JLabel("Prosek:");
@@ -69,42 +100,45 @@ public class StranaSaRezultatima extends JDialog {
 		panel.add(lblProsekNeMenjaj);
 		
 		JLabel lblIzabrano = new JLabel("Izabrano");
-		lblIzabrano.setBounds(12, 80, 56, 16);
+		lblIzabrano.setBounds(12, 71, 56, 16);
 		panel.add(lblIzabrano);
 		
 		JLabel lblZanimanje = new JLabel("zanimanje:");
 		lblZanimanje.setBounds(12, 105, 72, 16);
 		panel.add(lblZanimanje);
 		
-		JLabel lblPreporucujemoVam = new JLabel("Preporucujemo Vam");
+		lblPreporucujemoVam = new JLabel("Preporucujemo Vam");
 		lblPreporucujemoVam.setBounds(22, 73, 145, 16);
 		getContentPane().add(lblPreporucujemoVam);
 		
-		JLabel lblZaBroj = new JLabel();
-		lblZaBroj.setBounds(161, 73, 56, 16);
+		lblZaBroj = new JLabel();
+		lblZaBroj.setBounds(161, 73, 21, 16);
 		getContentPane().add(lblZaBroj);
 		
-		JLabel lblOblasti = new JLabel("oblasti");
-		lblOblasti.setBounds(22, 90, 56, 16);
-		getContentPane().add(lblOblasti);
+		lblOblasti = new JLabel("oblasti");
+		lblOblasti.setBounds(194, 73, 56, 16);
+		getContentPane().add(lblOblasti);			
 		
 		panelSaDugmicima = new JPanel();
-		panelSaDugmicima.setBounds(21, 125, 316, 61);
+		panelSaDugmicima.setBounds(21, 115, 423, 71);
 		getContentPane().add(panelSaDugmicima);
 		panelSaDugmicima.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		lblError = new JLabel("");
+		lblError.setBounds(22, 51, 422, 151);
+		getContentPane().add(lblError);
+		lblError.setIcon(new ImageIcon(StranaSaRezultatima.class.getResource("/img/no-results-found.png")));
+		lblError.setVisible(false);
+		
 		try {
 			postaviDugmice();
-			lblZaBroj.setText(brojOblasti+"");
-			//postaviIzgledPanelaOblasti(0);
-			
+			lblZaBroj.setText(brojOblasti+"");			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 		panelSaOblastima = new JPanel();
-		panelSaOblastima.setBounds(12, 233, 945, 308);
+		panelSaOblastima.setBounds(12, 207, 880, 253);
 		getContentPane().add(panelSaOblastima);
 		panelSaOblastima.setLayout(null);
 		
@@ -118,16 +152,19 @@ public class StranaSaRezultatima extends JDialog {
 		
 		jtaObjasnjenje = new JTextArea();
 		jtaObjasnjenje.setEditable(false);
-		jtaObjasnjenje.setBounds(22, 58, 892, 162);
+		jtaObjasnjenje.setBounds(22, 37, 810, 162);
 		panelSaOblastima.add(jtaObjasnjenje);
+		jtaObjasnjenje.setOpaque(false);
 		
 		JLabel lblPreporucujemo = new JLabel("Preporucujemo:");
-		lblPreporucujemo.setBounds(32, 243, 496, 16);
+		lblPreporucujemo.setBounds(22, 212, 104, 16);
 		panelSaOblastima.add(lblPreporucujemo);
 		
 		jlbFaks = new JLabel();
-		jlbFaks.setBounds(129, 243, 785, 16);
+		jlbFaks.setBounds(148, 212, 785, 16);
 		panelSaOblastima.add(jlbFaks);
+		
+		
 		postaviIzgledPanelaOblasti(0);		
 	}
 	
@@ -136,16 +173,30 @@ public class StranaSaRezultatima extends JDialog {
 		if (oblastiIma == 0) {
 			throw new Exception("Nema nijedne oblasti");
 		}
+		if (oblastiIma == 1) {
+			String text = Kontroler.getInstanca().getIspitanik().getOblasti().get(0);
+			if (text == "Obavezno ponovno testiranje!!!") {
+				panelSaDugmicima.setVisible(false);
+				lblPreporucujemoVam.setVisible(false);
+				lblZaBroj.setVisible(false);
+				lblOblasti.setVisible(false);
+				lblError.setVisible(true);
+			}
+		}
 		if (oblastiIma >=1) {
 			btnPan1 = new JButton("Oblast 1");
+			lblOblasti.setText("oblast");
 			btnPan1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					postaviIzgledPanelaOblasti(0);
 				}
 			});
 			panelSaDugmicima.add(btnPan1);
-			btnPan1.setVisible(true);
-			//postaviIzgledPanelaOblasti(0);
+			if (oblastiIma == 1) {
+				btnPan1.setVisible(false);
+			}else {
+				btnPan1.setVisible(true);
+			}			
 		}		
 		if (oblastiIma>=2) {
 			btnPan2 = new JButton("Oblast 2");
@@ -195,13 +246,16 @@ public class StranaSaRezultatima extends JDialog {
 			}
 			String prfax = Kontroler.getInstanca().getIspitanik().getPredlozeniFakulteti().get(index);
 			jlbOblast.setText(rez.toUpperCase());
+			Font f = jlbOblast.getFont();
+			jlbOblast.setFont(f.deriveFont(f.getStyle() | Font.BOLD));;
 			jlbFaks.setText(prfax);
 			jtaObjasnjenje.setText(objasnjenje);
+			jtaObjasnjenje.setWrapStyleWord(true);
 			jtaObjasnjenje.setLineWrap(true);
+			
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				
 			}
-
 }

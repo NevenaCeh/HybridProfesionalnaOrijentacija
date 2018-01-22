@@ -22,6 +22,7 @@ public class Kontroler {
 	private static Kontroler instanca;
 	private Ispitanik ispitanik;
 	DBKonekcija db;
+	private static Pocetna p;
 	
 	private Kontroler(){
 		ispitanik = new Ispitanik();
@@ -36,10 +37,18 @@ public class Kontroler {
 	}
 	
 	public static final void main(String[] args) {
-    	Pocetna p = new Pocetna();
+    	p = new Pocetna();
     	p.setLocationRelativeTo(null);
     	p.setVisible(true);
     }
+	
+	public void vratiPocetnu() {
+		p.setVisible(true);
+	}
+	
+	public void sakrijPocetnu() {
+		p.setVisible(false);
+	}
 	
 	public void postaviPrvePodatke(String ime, String jmbg, double prosek, String izabrano){
 		ispitanik.setImePrezime(ime);

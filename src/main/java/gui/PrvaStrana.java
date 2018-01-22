@@ -16,6 +16,8 @@ import domen.Ispitanik;
 
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
 
 import kontroler.Kontroler;
@@ -25,6 +27,13 @@ public class PrvaStrana extends JDialog {
 	private final JPanel contentPanel = new JPanel();
 
 	public PrvaStrana() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Kontroler.getInstanca().vratiPocetnu();
+			}
+		});
+		setTitle("Upitnik");
 		setBounds(100, 100, 534, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

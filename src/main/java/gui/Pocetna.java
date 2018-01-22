@@ -14,6 +14,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import kontroler.Kontroler;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -35,13 +38,7 @@ public class Pocetna extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				UlogujSe us = new UlogujSe();
 				us.setVisible(true);
-				//dispose();
-				us.addWindowListener(new WindowAdapter() {
-					@Override
-					public void windowClosed(WindowEvent arg0) {
-						System.exit(0);
-					}
-				});
+				Kontroler.getInstanca().sakrijPocetnu();
 			}
 		});
 		mnTest.add(jmiZapocniTest);
@@ -61,7 +58,7 @@ public class Pocetna extends JFrame {
 		JMenuItem jmiOblasti = new JMenuItem("Oblasti");
 		jmiOblasti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OblastiInfo info = new OblastiInfo();
+				OblastiPregled2 info = new OblastiPregled2();
 				info.setVisible(true);
 			}
 		});
@@ -92,7 +89,7 @@ public class Pocetna extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				UlogujSe us = new UlogujSe();
 				us.setVisible(true);
-				//dispose();
+				Kontroler.getInstanca().sakrijPocetnu();
 				us.addWindowListener(new WindowAdapter() {
 					@Override
 					public void windowClosed(WindowEvent arg0) {

@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
@@ -8,12 +9,17 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import org.omg.PortableInterceptor.INACTIVE;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 import com.sun.org.apache.xerces.internal.util.DraconianErrorHandler;
 
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.ActionEvent;
@@ -40,6 +46,12 @@ public class UlogujSe extends JDialog {
 	 * Create the dialog.
 	 */
 	public UlogujSe() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Kontroler.getInstanca().vratiPocetnu();
+			}
+		});
 		setTitle("Uloguj se");
 		setBounds(100, 100, 503, 435);
 		getContentPane().setLayout(new BorderLayout());
@@ -55,7 +67,6 @@ public class UlogujSe extends JDialog {
 		jtfImeIPrezime = new JTextField();
 		jtfImeIPrezime.setBounds(178, 47, 269, 20);
 		contentPanel.add(jtfImeIPrezime);
-		//jtfImeIPrezime.setColumns(10);
 		
 		JLabel lblMaticniBroj = new JLabel("Maticni broj:");
 		lblMaticniBroj.setBounds(33, 95, 81, 14);
@@ -86,6 +97,7 @@ public class UlogujSe extends JDialog {
 					Kontroler.getInstanca().postaviPrvePodatke(ime, jmbg, prosek, izabrano);
 					PrvaStrana ps = new PrvaStrana();
 					ps.setVisible(true);
+					setVisible(false);
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
 					// TODO Auto-generated catch block
