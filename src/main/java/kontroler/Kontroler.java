@@ -1,26 +1,10 @@
 package kontroler;
 
-import java.awt.Desktop;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-
+import java.util.*;
 import net.sourceforge.jFuzzyLogic.FIS;
-
-import org.goodoldai.jeff.wizard.JEFFWizard;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
-
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.pdf.PdfWriter;
-
 import db.DBKonekcija;
 import domen.Ispitanik;
 import domen.Oblast;
