@@ -1,5 +1,9 @@
 package kontroler;
 
+import java.awt.Desktop;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,9 +12,14 @@ import java.util.List;
 
 import net.sourceforge.jFuzzyLogic.FIS;
 
+import org.goodoldai.jeff.wizard.JEFFWizard;
 import org.kie.api.KieServices;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfWriter;
 
 import db.DBKonekcija;
 import domen.Ispitanik;
@@ -245,10 +254,8 @@ public class Kontroler {
 		sveoblasti.add(otrg);
 		for (Oblast oblast : sveoblasti) {
 			oblast.setNivo(postaviNivo(oblast.getPoeni()));
-		}
-		
-		sveoblasti.sort(Comparator.comparingDouble(Oblast::getPoeni).reversed());
-		
+		}		
+		sveoblasti.sort(Comparator.comparingDouble(Oblast::getPoeni).reversed());		
 		return sveoblasti;
 	}
 
@@ -282,6 +289,51 @@ public class Kontroler {
 	public List<Oblast> vratiListuOblastiIzBaze() {
 		return db.vratiListuOblasti();
 	}
+
+	/*public void kreirajDokument() {
+		List<Oblast> oblasti = vratiListuOblasti();
+		List<Oblast> oblastiIzBaze = vratiListuOblastiIzBaze();
+		
+		JEFFWizard ef = new JEFFWizard();
+        ef.setInternationalization(false);
+        
+        ef.setTitle("Test profesionalne orijentacije");
+        ef.setTitle(ispitanik.getImePrezime());
+        ef.createExplanation();
+        
+        Document document=new Document(); 
+        try {
+			PdfWriter.getInstance(document,new FileOutputStream("Your local drive"));
+		} catch (FileNotFoundException | DocumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} 
+        document.open();
+
+        
+		for (Oblast oblast : oblasti) {
+			boolean nasaoga = false;
+			for (Oblast oblastbaza : oblastiIzBaze) {
+				if (nasaoga) {
+					break;
+				}
+				if (oblast.getIme() == oblastbaza.getIme()) {
+					nasaoga = true;
+					ef.addText(null, "Radi se", oblastbaza.getPunoime());
+					ef.addText(null, "Radi se", oblastbaza.getObjasnjenje());
+				}								
+			}
+		}
+		String imedokumenta = "Test - "+ispitanik.getImePrezime()+".pdf"; 
+		ef.generatePDFReport(imedokumenta, false);
+        if (Desktop.isDesktopSupported())
+			try {
+				java.awt.Desktop.getDesktop().browse(java.net.URI.create((new java.io.File(imedokumenta).toURI().toString())));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+	}*/
 	
 	
 	

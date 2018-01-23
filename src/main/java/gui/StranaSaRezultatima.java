@@ -15,7 +15,22 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.BoxView;
+import javax.swing.text.ComponentView;
+import javax.swing.text.Element;
+import javax.swing.text.IconView;
+import javax.swing.text.LabelView;
+import javax.swing.text.ParagraphView;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
+import javax.swing.text.StyledEditorKit;
+import javax.swing.text.View;
+import javax.swing.text.ViewFactory;
 
 import kontroler.Kontroler;
 import java.awt.event.WindowAdapter;
@@ -29,7 +44,7 @@ public class StranaSaRezultatima extends JDialog {
 	int brojOblasti;
 	private JPanel panelSaDugmicima;
 	private JLabel jlbOblast;
-	private JTextArea jtaObjasnjenje;
+	private JTextPane jtaObjasnjenje;
 	private JLabel jlbFaks;	
 	private JPanel panelSaOblastima;
 	private JButton btnPan1;
@@ -40,15 +55,16 @@ public class StranaSaRezultatima extends JDialog {
 	private JLabel lblZaBroj;
 	private JLabel lblOblasti;
 	private JLabel lblError;
+	JLabel slikakljuc;
 	
 	public StranaSaRezultatima(int brojOblasti) {
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowDeactivated(WindowEvent e) {
+			public void windowClosing(WindowEvent e) {
 				Kontroler.getInstanca().vratiPocetnu();
 			}
 		});
-		setBounds(100, 100, 923, 520);
+		setBounds(100, 100, 923, 489);
 		getContentPane().setLayout(null);
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -57,11 +73,14 @@ public class StranaSaRezultatima extends JDialog {
 		this.brojOblasti = brojOblasti;
 		
 		JLabel lblNewLabel = new JLabel("Postovani");
-		lblNewLabel.setBounds(22, 13, 56, 14);
+		lblNewLabel.setBounds(82, 24, 84, 14);
 		getContentPane().add(lblNewLabel);
+		Font fnt = lblNewLabel.getFont();
+		lblNewLabel.setFont(fnt.deriveFont(fnt.getStyle() | Font.BOLD));
+		lblNewLabel.setFont(fnt.deriveFont(fnt.getStyle() | Font.ITALIC));
 		
 		JLabel lblIme = new JLabel("ime");
-		lblIme.setBounds(104, 13, 351, 14);
+		lblIme.setBounds(156, 24, 310, 14);
 		Font font = lblIme.getFont();
 		lblIme.setFont(font.deriveFont(font.getStyle() | Font.BOLD));
 		lblIme.setFont(font.deriveFont(font.getStyle() | Font.ITALIC));
@@ -74,25 +93,30 @@ public class StranaSaRezultatima extends JDialog {
 		panel.setLayout(null);
 		
 		JLabel lblProsek = new JLabel("Prosek");
-		lblProsek.setBounds(141, 27, 239, 16);
+		lblProsek.setBounds(90, 27, 239, 16);
 		Font f = lblProsek.getFont();
 		lblProsek.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
 		//lblProsek.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
 		panel.add(lblProsek);
 		lblProsek.setText(Kontroler.getInstanca().getIspitanik().getProsek()+"");
 		
-		JTextArea lblIzabranoZanimanje = new JTextArea("Izabrano zanimanje");
-		lblIzabranoZanimanje.setBounds(141, 68, 239, 66);
+		JTextPane lblIzabranoZanimanje = new JTextPane();
+		lblIzabranoZanimanje.setBounds(90, 68, 239, 66);
 		Font f1 = lblIzabranoZanimanje.getFont();
 		lblIzabranoZanimanje.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
 		panel.add(lblIzabranoZanimanje);
 		lblIzabranoZanimanje.setEditable(false);
-		lblIzabranoZanimanje.setLineWrap(true);
-		lblIzabranoZanimanje.setWrapStyleWord(true);
 		lblIzabranoZanimanje.setOpaque(false);
-		//lblIzabranoZanimanje.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-		lblIzabranoZanimanje.setAlignmentX(CENTER_ALIGNMENT);
-		lblIzabranoZanimanje.setAlignmentY(CENTER_ALIGNMENT);
+		lblIzabranoZanimanje.setEditorKit(new MyEditorKit());
+       /* SimpleAttributeSet attrs=new SimpleAttributeSet();
+        StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
+        StyledDocument doc=(StyledDocument)lblIzabranoZanimanje.getDocument();
+        try {
+			doc.insertString(0,Kontroler.getInstanca().getIspitanik().getIzabranoZanimanje(),attrs);
+		} catch (BadLocationException e1) {
+			e1.printStackTrace();
+		}
+        doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);*/
 		lblIzabranoZanimanje.setText(Kontroler.getInstanca().getIspitanik().getIzabranoZanimanje());		
 		
 		JLabel lblProsekNeMenjaj = new JLabel("Prosek:");
@@ -100,7 +124,7 @@ public class StranaSaRezultatima extends JDialog {
 		panel.add(lblProsekNeMenjaj);
 		
 		JLabel lblIzabrano = new JLabel("Izabrano");
-		lblIzabrano.setBounds(12, 71, 56, 16);
+		lblIzabrano.setBounds(12, 82, 56, 16);
 		panel.add(lblIzabrano);
 		
 		JLabel lblZanimanje = new JLabel("zanimanje:");
@@ -108,21 +132,26 @@ public class StranaSaRezultatima extends JDialog {
 		panel.add(lblZanimanje);
 		
 		lblPreporucujemoVam = new JLabel("Preporucujemo Vam");
-		lblPreporucujemoVam.setBounds(22, 73, 145, 16);
+		lblPreporucujemoVam.setBounds(82, 73, 145, 16);
 		getContentPane().add(lblPreporucujemoVam);
 		
 		lblZaBroj = new JLabel();
-		lblZaBroj.setBounds(161, 73, 21, 16);
+		lblZaBroj.setBounds(218, 73, 21, 16);
 		getContentPane().add(lblZaBroj);
 		
 		lblOblasti = new JLabel("oblasti");
-		lblOblasti.setBounds(194, 73, 56, 16);
+		lblOblasti.setBounds(251, 73, 56, 16);
 		getContentPane().add(lblOblasti);			
 		
 		panelSaDugmicima = new JPanel();
-		panelSaDugmicima.setBounds(21, 115, 423, 71);
+		panelSaDugmicima.setBounds(12, 102, 432, 100);
 		getContentPane().add(panelSaDugmicima);
 		panelSaDugmicima.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		slikakljuc = new JLabel("");
+		slikakljuc.setIcon(new ImageIcon(StranaSaRezultatima.class.getResource("/img/iStock_000019647655Small1-300x212.jpg")));
+		panelSaDugmicima.add(slikakljuc);
+		slikakljuc.setVisible(false);
 		
 		lblError = new JLabel("");
 		lblError.setBounds(22, 51, 422, 151);
@@ -138,32 +167,34 @@ public class StranaSaRezultatima extends JDialog {
 		}
 
 		panelSaOblastima = new JPanel();
-		panelSaOblastima.setBounds(12, 207, 880, 253);
+		panelSaOblastima.setBounds(12, 207, 880, 218);
 		getContentPane().add(panelSaOblastima);
 		panelSaOblastima.setLayout(null);
 		
-		JLabel lblOblastKojaVam = new JLabel("Oblast koja Vam najvise odgovara je ");
-		lblOblastKojaVam.setBounds(22, 8, 214, 16);
+		JLabel lblOblastKojaVam = new JLabel("Oblast:");
+		lblOblastKojaVam.setBounds(72, 8, 214, 16);
 		panelSaOblastima.add(lblOblastKojaVam);
 		
 		jlbOblast = new JLabel();
-		jlbOblast.setBounds(265, 8, 632, 16);
+		jlbOblast.setBounds(126, 8, 729, 16);
 		panelSaOblastima.add(jlbOblast);
 		
-		jtaObjasnjenje = new JTextArea();
+		//jtaObjasnjenje = new JTextArea();
+		jtaObjasnjenje = new JTextPane();
 		jtaObjasnjenje.setEditable(false);
-		jtaObjasnjenje.setBounds(22, 37, 810, 162);
+		jtaObjasnjenje.setBounds(22, 37, 832, 111);
 		panelSaOblastima.add(jtaObjasnjenje);
 		jtaObjasnjenje.setOpaque(false);
+		jtaObjasnjenje.setAutoscrolls(true);
+			
 		
 		JLabel lblPreporucujemo = new JLabel("Preporucujemo:");
-		lblPreporucujemo.setBounds(22, 212, 104, 16);
+		lblPreporucujemo.setBounds(72, 175, 97, 16);
 		panelSaOblastima.add(lblPreporucujemo);
 		
 		jlbFaks = new JLabel();
-		jlbFaks.setBounds(148, 212, 785, 16);
+		jlbFaks.setBounds(171, 175, 697, 16);
 		panelSaOblastima.add(jlbFaks);
-		
 		
 		postaviIzgledPanelaOblasti(0);		
 	}
@@ -181,6 +212,8 @@ public class StranaSaRezultatima extends JDialog {
 				lblZaBroj.setVisible(false);
 				lblOblasti.setVisible(false);
 				lblError.setVisible(true);
+			}else {
+				slikakljuc.setVisible(true);
 			}
 		}
 		if (oblastiIma >=1) {
@@ -249,13 +282,80 @@ public class StranaSaRezultatima extends JDialog {
 			Font f = jlbOblast.getFont();
 			jlbOblast.setFont(f.deriveFont(f.getStyle() | Font.BOLD));;
 			jlbFaks.setText(prfax);
-			jtaObjasnjenje.setText(objasnjenje);
-			jtaObjasnjenje.setWrapStyleWord(true);
-			jtaObjasnjenje.setLineWrap(true);
+			//jtaObjasnjenje.setText(objasnjenje);
+			//jtaObjasnjenje.setWrapStyleWord(true);
+			//jtaObjasnjenje.setLineWrap(true);
 			
+			jtaObjasnjenje.setEditorKit(new MyEditorKit());
+			SimpleAttributeSet attrs=new SimpleAttributeSet();
+	        StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
+	        StyledDocument doc=(StyledDocument)jtaObjasnjenje.getDocument();
+	        try {
+				doc.insertString(0,objasnjenje,attrs);
+			} catch (BadLocationException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	        doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);
+	        
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 				
 			}
 }
+
+class MyEditorKit extends StyledEditorKit {
+
+    public ViewFactory getViewFactory() {
+        return new StyledViewFactory();
+    }
+ 
+    static class StyledViewFactory implements ViewFactory {
+
+		@Override
+		public View create(Element elem) {
+			String kind = elem.getName();
+            if (kind != null) {
+                if (kind.equals(AbstractDocument.ContentElementName)) {
+                    return new LabelView(elem);
+                } else if (kind.equals(AbstractDocument.ParagraphElementName)) {
+                    return new ParagraphView(elem);
+                } else if (kind.equals(AbstractDocument.SectionElementName)) {
+                    return new CenteredBoxView(elem, View.Y_AXIS);
+                } else if (kind.equals(StyleConstants.ComponentElementName)) {
+                    return new ComponentView(elem);
+                } else if (kind.equals(StyleConstants.IconElementName)) {
+
+                    return new IconView(elem);
+                }
+            }
+ 
+            return new LabelView(elem);
+		}
+
+    }
+}
+ 
+class CenteredBoxView extends BoxView {
+    public CenteredBoxView(Element elem, int axis) {
+
+        super(elem,axis);
+    }
+    protected void layoutMajorAxis(int targetSpan, int axis, int[] offsets, int[] spans) {
+
+        super.layoutMajorAxis(targetSpan,axis,offsets,spans);
+        int textBlockHeight = 0;
+        int offset = 0;
+ 
+        for (int i = 0; i < spans.length; i++) {
+
+            textBlockHeight = spans[i];
+        }
+        offset = (targetSpan - textBlockHeight) / 2;
+        for (int i = 0; i < offsets.length; i++) {
+            offsets[i] += offset;
+        }
+
+    }
+}    

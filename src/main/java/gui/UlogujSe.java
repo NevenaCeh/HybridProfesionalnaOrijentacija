@@ -95,14 +95,13 @@ public class UlogujSe extends JDialog {
 					double prosek = validacija(ime, jmbg, prva, druga, treca);
 					Kontroler.getInstanca().proveriImaLiGA(jmbg);
 					Kontroler.getInstanca().postaviPrvePodatke(ime, jmbg, prosek, izabrano);
+					setVisible(false);
 					PrvaStrana ps = new PrvaStrana();
 					ps.setVisible(true);
-					setVisible(false);
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e.getMessage());
-					// TODO Auto-generated catch block
-					//e.printStackTrace();
-				}				
+				}	
+				
 			}
 
 			private double validacija(String ime, String jmbg, String prva, String druga, String treca) throws Exception {

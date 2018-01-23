@@ -511,12 +511,6 @@ public class CetvrtaStrana extends JDialog {
 				if (jrbDesetoJako.isSelected()) {
 					Kontroler.getInstanca().postaviBodoveHumRad(4);
 				}
-				/*try {
-					Kontroler.getInstanca().odradiEspertDeo();
-				} catch (Exception e) {
-					// TODO: handle exception
-					JOptionPane.showMessageDialog(null, e.getMessage());
-				}*/
 				PetaStrana ps = new PetaStrana();
 				ps.setVisible(true);
 				dispose();
