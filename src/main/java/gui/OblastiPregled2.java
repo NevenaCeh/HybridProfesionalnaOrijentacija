@@ -62,7 +62,7 @@ public class OblastiPregled2 extends JDialog {
 			
 			List<Oblast> listaoblasti = Kontroler.getInstanca().vratiListuOblastiIzBaze();
 			JPanel panel = createPanel(listaoblasti);
-	        JScrollPane scroll1 = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	        JScrollPane scroll1 = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 	        scroll1.setPreferredSize(new Dimension(410, 450));
 	        JScrollBar scrollbar = scroll1.getVerticalScrollBar();
 	        scrollbar.addAdjustmentListener(new AdjustmentListener() {
@@ -79,8 +79,10 @@ public class OblastiPregled2 extends JDialog {
 	
 	public static JLabel createOblastiList(Oblast oblast) {
 			JLabel lblImeOblasti = new JLabel("  "+oblast.getPunoime());
+			lblImeOblasti.setBackground(Color.red);
 			Font f = lblImeOblasti.getFont();
 			lblImeOblasti.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
+			lblImeOblasti.setPreferredSize(new Dimension(10, 10));
 			return lblImeOblasti;
     }
 	
@@ -89,18 +91,32 @@ public class OblastiPregled2 extends JDialog {
 		txtObjasnjenje.setEditable(false);
 		txtObjasnjenje.setText(oblast.getObjasnjenje());
 		txtObjasnjenje.setWrapStyleWord(true);
-		txtObjasnjenje.setOpaque(false);
+		//txtObjasnjenje.setOpaque(false);
 		txtObjasnjenje.setLineWrap(true);
+		txtObjasnjenje.setPreferredSize(new Dimension(100, 5));
+		if (!oblast.getIme().equals("tehnicki")) {
+			System.out.println("tu je");
+		//txtObjasnjenje.setBounds(new Rectangle(0, 0, 0, 0));
+		//txtObjasnjenje.setSize(100, 50);
+		txtObjasnjenje.setRows(5);
+		}else {
+			//txtObjasnjenje.setPreferredSize(new Dimension(100, 100));
+		}		
+		txtObjasnjenje.setAutoscrolls(true);
+		txtObjasnjenje.setBackground(Color.BLUE);
 		return txtObjasnjenje;
 }
 	
 	public static JPanel createPanel(List<Oblast> lista) {
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 1, 0, 0));
+       // panel.setLayout(new GridLayout(0, 1, 0, 0));
+        panel.setLayout(new GridLayout(0, 1));
+        //panel.setOpaque(false);
+        //panel.setBackground(Color.BLUE);
         for (Oblast oblast : lista) {
+        	System.out.println(oblast.getIme());
 			panel.add(createOblastiList(oblast));
-			panel.add(createOblastiTxtPane(oblast));
-			panel.setOpaque(false);
+			panel.add(createOblastiTxtPane(oblast));			
 		}
         return panel;
     }

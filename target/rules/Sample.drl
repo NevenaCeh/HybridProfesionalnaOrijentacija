@@ -994,3 +994,14 @@ lock-on-active true
 		update(i);
 end
 
+rule "Ekstrem sve slabo lista oblasti ostala prazna"
+lock-on-active true
+	when
+	o : Oblast( ime == "prazna") 
+	i : Ispitanik()
+	then
+		i.getObjasnjenja().add("Po Vasim odgovorima, Vi ste slabo zainteresovani za ove oblasti i na osnovu ovih parametara Vam ne mozemo odrediti odredjenu oblast koja Vam najvise lezi.");
+		i.getPredlozeniFakulteti().add("Zamolite psihologa za razgovor ili testiranje pomocu nekog drugog testa!");
+		update(i);
+end
+

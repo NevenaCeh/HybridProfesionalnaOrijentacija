@@ -96,27 +96,17 @@ public class StranaSaRezultatima extends JDialog {
 		lblProsek.setBounds(90, 27, 239, 16);
 		Font f = lblProsek.getFont();
 		lblProsek.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
-		//lblProsek.setFont(f.deriveFont(f.getStyle() | Font.BOLD));
 		panel.add(lblProsek);
 		lblProsek.setText(Kontroler.getInstanca().getIspitanik().getProsek()+"");
 		
 		JTextPane lblIzabranoZanimanje = new JTextPane();
 		lblIzabranoZanimanje.setBounds(90, 68, 239, 66);
 		Font f1 = lblIzabranoZanimanje.getFont();
-		lblIzabranoZanimanje.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
+		lblIzabranoZanimanje.setFont(f1.deriveFont(f1.getStyle() | Font.ITALIC));
 		panel.add(lblIzabranoZanimanje);
 		lblIzabranoZanimanje.setEditable(false);
 		lblIzabranoZanimanje.setOpaque(false);
 		lblIzabranoZanimanje.setEditorKit(new MyEditorKit());
-       /* SimpleAttributeSet attrs=new SimpleAttributeSet();
-        StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);
-        StyledDocument doc=(StyledDocument)lblIzabranoZanimanje.getDocument();
-        try {
-			doc.insertString(0,Kontroler.getInstanca().getIspitanik().getIzabranoZanimanje(),attrs);
-		} catch (BadLocationException e1) {
-			e1.printStackTrace();
-		}
-        doc.setParagraphAttributes(0,doc.getLength()-1,attrs,false);*/
 		lblIzabranoZanimanje.setText(Kontroler.getInstanca().getIspitanik().getIzabranoZanimanje());		
 		
 		JLabel lblProsekNeMenjaj = new JLabel("Prosek:");
@@ -179,14 +169,12 @@ public class StranaSaRezultatima extends JDialog {
 		jlbOblast.setBounds(126, 8, 729, 16);
 		panelSaOblastima.add(jlbOblast);
 		
-		//jtaObjasnjenje = new JTextArea();
 		jtaObjasnjenje = new JTextPane();
 		jtaObjasnjenje.setEditable(false);
 		jtaObjasnjenje.setBounds(22, 37, 832, 111);
 		panelSaOblastima.add(jtaObjasnjenje);
 		jtaObjasnjenje.setOpaque(false);
-		jtaObjasnjenje.setAutoscrolls(true);
-			
+		jtaObjasnjenje.setAutoscrolls(true);			
 		
 		JLabel lblPreporucujemo = new JLabel("Preporucujemo:");
 		lblPreporucujemo.setBounds(72, 175, 97, 16);
@@ -206,7 +194,7 @@ public class StranaSaRezultatima extends JDialog {
 		}
 		if (oblastiIma == 1) {
 			String text = Kontroler.getInstanca().getIspitanik().getOblasti().get(0);
-			if (text == "Obavezno ponovno testiranje!!!") {
+			if (text == "Obavezno ponovno testiranje!!!" || text == "Premala zainteresovanost za ove oblasti!!!") {
 				panelSaDugmicima.setVisible(false);
 				lblPreporucujemoVam.setVisible(false);
 				lblZaBroj.setVisible(false);

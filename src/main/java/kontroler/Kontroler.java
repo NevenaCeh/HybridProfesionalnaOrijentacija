@@ -107,18 +107,25 @@ public class Kontroler {
 		boolean ekstrem = false;
 		//svi su ne
 		int ne = 0;
+		//int svislabi = 0;
+		//int svisrednje = 0;
 		int svijaki = 0;
 		for (Oblast oblast : oblastisortirane) {
 			if (oblast.getNivo() == 1) {
 				ne+=1;
 			}
+			/*if (oblast.getNivo() == 2) {
+				svislabi+=1;
+			}
+			if (oblast.getNivo() == 3) {
+				svisrednje+=1;
+			}*/
 			if (oblast.getNivo() == 4) {
 				svijaki+=1;
 			}
+						
 		}
-		if (ne == 10) {
-			ekstrem = true;
-		}else if (svijaki == 10) {
+		if (ne == 10 || svijaki == 10) {
 			ekstrem = true;
 		}
 		if (ekstrem) {
@@ -126,7 +133,7 @@ public class Kontroler {
 			Oblast ekstremoblast = new Oblast(0, "ekstrem");
             if (ne == 10) {
 				ekstremoblast.setNivo(1);				
-			}else {
+			}else if (svijaki == 10){
 				ekstremoblast.setNivo(4);
 			}
             ispitanik.getOblasti().add("Obavezno ponovno testiranje!!!");
@@ -196,6 +203,14 @@ public class Kontroler {
 	                kSession.insert(ispitanik);                                
 	            	kSession.fireAllRules();
 				}  
+	        	
+	        	if (ispitanik.getOblasti().isEmpty()) {
+	        		Oblast praznaoblast = new Oblast(0, "prazna");
+	                ispitanik.getOblasti().add("Premala zainteresovanost za ove oblasti!!!");
+	        		kSession.insert(praznaoblast);
+	                kSession.insert(ispitanik);                                
+	            	kSession.fireAllRules();
+				}
 	        	System.out.println(ispitanik);
 	        } catch (Throwable t) {
 	        	throw new Exception("Greska jer "+t.getMessage());
