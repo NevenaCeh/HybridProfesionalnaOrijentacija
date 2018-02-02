@@ -114,16 +114,9 @@ public class Kontroler {
 			if (oblast.getNivo() == 1) {
 				ne+=1;
 			}
-			/*if (oblast.getNivo() == 2) {
-				svislabi+=1;
-			}
-			if (oblast.getNivo() == 3) {
-				svisrednje+=1;
-			}*/
 			if (oblast.getNivo() == 4) {
 				svijaki+=1;
-			}
-						
+			}						
 		}
 		if (ne == 10 || svijaki == 10) {
 			ekstrem = true;
@@ -187,6 +180,7 @@ public class Kontroler {
 				}						
 				List<String> dapopunimo = new ArrayList<String>();
 				for (Oblast oblast : oblastisortirane) {
+					System.out.println(oblast);
 					dapopunimo.add(oblast.getIme());
 				}					
 				for (String string : dapopunimo) {
@@ -212,10 +206,12 @@ public class Kontroler {
 	            	kSession.fireAllRules();
 				}
 	        	System.out.println(ispitanik);
+	        	
 	        } catch (Throwable t) {
 	        	throw new Exception("Greska jer "+t.getMessage());
 	        }		
 		}
+		db.izmeniIspitanika(ispitanik);
 		
 	}
 	
@@ -287,6 +283,25 @@ public class Kontroler {
 
 	public List<Oblast> vratiListuOblastiIzBaze() {
 		return db.vratiListuOblasti();
+	}
+
+	public List<Ispitanik> vratiListuIspitanika() {		
+		return db.vratiListuIspitanika();
+	}
+
+	public Ispitanik vratiIspitanika(Ispitanik isp) {
+		try {
+			Ispitanik ibaza = db.vratiIspitanika(isp);
+			System.out.println(ibaza);
+			return ibaza;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public List<Ispitanik> pretraziIspitanike(String text) {
+		return db.pretraziIspitanike(text);
 	}
 
 	/*public void kreirajDokument() {

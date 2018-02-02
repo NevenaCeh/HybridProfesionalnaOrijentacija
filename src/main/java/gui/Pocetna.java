@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import kontroler.Kontroler;
@@ -20,6 +21,7 @@ import kontroler.Kontroler;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 public class Pocetna extends JFrame {
 
@@ -63,6 +65,39 @@ public class Pocetna extends JFrame {
 			}
 		});
 		mnPomoc.add(jmiOblasti);
+		
+		JMenu mnRezultati = new JMenu("Rezultati");
+		menuBar.add(mnRezultati);
+		
+		JMenuItem mntmRezultati = new JMenuItem("Rezultati");
+		mntmRezultati.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JPanel panel = new JPanel();
+				JLabel label = new JLabel("Unesi lozinku:");
+				JPasswordField pass = new JPasswordField(10);
+				panel.add(label);
+				panel.add(pass);
+				String[] options = new String[]{"OK", "Cancel"};
+				int option = JOptionPane.showOptionDialog(null, panel, "Unesi lozinku za rezultate",
+				                         JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE,
+				                         null, options, options[1]);
+				if(option == 0) // pressing OK button
+				{
+				    char[] password = pass.getPassword();
+				    String lozinka = new String(password);
+				    System.out.println("Your password is: " + lozinka);
+				    if (lozinka.equals("asd")) {
+						System.out.println("Super");
+						Rezultati r = new Rezultati();
+						r.setVisible(true);
+					}else {
+						JOptionPane.showMessageDialog(null, "Nije dozvoljen pristup!!!");
+					}
+				}
+				
+			}
+		});
+		mnRezultati.add(mntmRezultati);
 		
 		JMenu mnIzlaz = new JMenu("Izlaz");
 		menuBar.add(mnIzlaz);

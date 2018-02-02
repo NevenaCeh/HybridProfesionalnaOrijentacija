@@ -116,8 +116,7 @@ public class UlogujSe extends JDialog {
 				}
 				if (prva == null || prva == "") {
 					throw new Exception("Niste uneli prosek ostvaren u prvoj godini!!");
-				}
-				
+				}				
 				if (druga == null || druga == "") {
 					throw new Exception("Niste uneli prosek ostvaren u drugoj godini!!");
 				}

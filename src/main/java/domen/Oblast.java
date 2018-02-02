@@ -46,7 +46,7 @@ public class Oblast {
 
 	@Override
 	public String toString() {
-		return "Oblast [poeni=" + poeni + ", ime=" + ime + ", nivo=" + nivo + "]";
+		return ime+" "+poeni;
 	}
 
 	public String getObjasnjenje() {
