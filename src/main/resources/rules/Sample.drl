@@ -1,4 +1,4 @@
-package com.sample
+	package com.sample
  
 import domen.Oblast;
 import domen.Ispitanik;

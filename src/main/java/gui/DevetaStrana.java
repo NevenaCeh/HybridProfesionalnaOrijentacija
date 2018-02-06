@@ -192,7 +192,7 @@ public class DevetaStrana extends JDialog {
 		petoPitanje.add(jrbPetoSlabo);
 		petoPitanje.add(jrbPetoSrednje);
 		
-		JLabel lblZasticivatiDjubritiI = new JLabel("86. Strucno orezivati vinovu lozu");
+		JLabel lblZasticivatiDjubritiI = new JLabel("86. Pratiti proces izleganja pilica u inkubatoru");
 		lblZasticivatiDjubritiI.setFont(new Font("Tahoma", Font.PLAIN, 10));
 		lblZasticivatiDjubritiI.setBounds(10, 241, 228, 14);
 		contentPanel.add(lblZasticivatiDjubritiI);
