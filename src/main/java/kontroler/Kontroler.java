@@ -107,8 +107,6 @@ public class Kontroler {
 		boolean ekstrem = false;
 		//svi su ne
 		int ne = 0;
-		//int svislabi = 0;
-		//int svisrednje = 0;
 		int svijaki = 0;
 		for (Oblast oblast : oblastisortirane) {
 			if (oblast.getNivo() == 1) {
@@ -122,7 +120,6 @@ public class Kontroler {
 			ekstrem = true;
 		}
 		if (ekstrem) {
-			//ispitanik.setOblasti(dapopunimo);
 			Oblast ekstremoblast = new Oblast(0, "ekstrem");
             if (ne == 10) {
 				ekstremoblast.setNivo(1);				
@@ -130,15 +127,12 @@ public class Kontroler {
 				ekstremoblast.setNivo(4);
 			}
             ispitanik.getOblasti().add("Obavezno ponovno testiranje!!!");
-			// load up the knowledge base
 	        KieServices ks = KieServices.Factory.get();
     	    KieContainer kContainer = ks.getKieClasspathContainer();
-        	KieSession kSession = kContainer.newKieSession("ksession-rules");
-        		
+        	KieSession kSession = kContainer.newKieSession("ksession-rules");        		
         		kSession.insert(ekstremoblast);
                 kSession.insert(ispitanik);                                
-            	kSession.fireAllRules();
-			 
+            	kSession.fireAllRules();			 
         	System.out.println(ispitanik);
 		}else {
 			try {
@@ -302,53 +296,6 @@ public class Kontroler {
 
 	public List<Ispitanik> pretraziIspitanike(String text) {
 		return db.pretraziIspitanike(text);
-	}
-
-	/*public void kreirajDokument() {
-		List<Oblast> oblasti = vratiListuOblasti();
-		List<Oblast> oblastiIzBaze = vratiListuOblastiIzBaze();
-		
-		JEFFWizard ef = new JEFFWizard();
-        ef.setInternationalization(false);
-        
-        ef.setTitle("Test profesionalne orijentacije");
-        ef.setTitle(ispitanik.getImePrezime());
-        ef.createExplanation();
-        
-        Document document=new Document(); 
-        try {
-			PdfWriter.getInstance(document,new FileOutputStream("Your local drive"));
-		} catch (FileNotFoundException | DocumentException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} 
-        document.open();
-
-        
-		for (Oblast oblast : oblasti) {
-			boolean nasaoga = false;
-			for (Oblast oblastbaza : oblastiIzBaze) {
-				if (nasaoga) {
-					break;
-				}
-				if (oblast.getIme() == oblastbaza.getIme()) {
-					nasaoga = true;
-					ef.addText(null, "Radi se", oblastbaza.getPunoime());
-					ef.addText(null, "Radi se", oblastbaza.getObjasnjenje());
-				}								
-			}
-		}
-		String imedokumenta = "Test - "+ispitanik.getImePrezime()+".pdf"; 
-		ef.generatePDFReport(imedokumenta, false);
-        if (Desktop.isDesktopSupported())
-			try {
-				java.awt.Desktop.getDesktop().browse(java.net.URI.create((new java.io.File(imedokumenta).toURI().toString())));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		
-	}*/
-	
-	
+	}	
 	
 }

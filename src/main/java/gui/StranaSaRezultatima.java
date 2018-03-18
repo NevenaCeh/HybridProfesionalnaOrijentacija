@@ -98,7 +98,9 @@ public class StranaSaRezultatima extends JDialog {
 		Font f = lblProsek.getFont();
 		lblProsek.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
 		panel.add(lblProsek);
-		lblProsek.setText(Kontroler.getInstanca().getIspitanik().getProsek()+"");
+		double pr = Kontroler.getInstanca().getIspitanik().getProsek();
+		double roundpr = Math.round(pr * 100.0)/100.0;
+		lblProsek.setText(roundpr+"");
 		
 		JTextPane lblIzabranoZanimanje = new JTextPane();
 		lblIzabranoZanimanje.setBounds(90, 68, 239, 66);
@@ -228,7 +230,9 @@ public class StranaSaRezultatima extends JDialog {
 		Font f = lblProsek.getFont();
 		lblProsek.setFont(f.deriveFont(f.getStyle() | Font.ITALIC));
 		panel.add(lblProsek);
-		lblProsek.setText(isp.getProsek()+"");
+		double pr = isp.getProsek();
+		double roundpr = Math.round(pr * 100.0) / 100.0;
+		lblProsek.setText(roundpr+"");
 		
 		JTextPane lblIzabranoZanimanje = new JTextPane();
 		lblIzabranoZanimanje.setBounds(90, 68, 239, 66);

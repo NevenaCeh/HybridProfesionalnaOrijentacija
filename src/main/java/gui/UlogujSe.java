@@ -78,7 +78,7 @@ public class UlogujSe extends JDialog {
 		jtfJMBG.setColumns(10);
 		
 		JComboBox jcbZanimanja = new JComboBox();
-		jcbZanimanja.setModel(new DefaultComboBoxModel(new String[] {"Pravnik", "Racunovodja", "Blagajnik", "Policajac", "Vojno lice", "Tehnicar", "Programer", "Fotograf", "Prodavac ", "Muzicar (pevac, kompozitor, pijanista...)", "Likovni umetnik (slikar, vajar)", "Glumac", "Traktorista", "Lekar (sve vrste)", "Kuvar", "Biolog", "Hemicar", "Fizicar", "Veterinar", "Psihijatar"}));
+		jcbZanimanja.setModel(new DefaultComboBoxModel(new String[] {"Pravnik", "Racunovodja", "Blagajnik", "Policajac", "Vojno lice", "Tehnicar", "Programer", "Fotograf", "Novinar", "Menadzer", "Trgovac", "Muzicar (pevac, kompozitor, pijanista...)", "Likovni umetnik (slikar, vajar)", "Glumac", "Traktorista", "Farmer", "Lekar (sve vrste)", "Kuvar", "Biolog", "Zoolog", "Hemicar", "Fizicar", "Veterinar", "Psihijatar", "Arhitekta", "Dizajner", "Stomatolog"}));
 		jcbZanimanja.setBounds(178, 275, 269, 20);
 		contentPanel.add(jcbZanimanja);
 		

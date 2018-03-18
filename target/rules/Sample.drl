@@ -71,11 +71,55 @@ lock-on-active true
         update( i );
 end
 
+rule "Administracija jako i srednje dobar i ok prosek izabrao menadzera"
+lock-on-active  true
+    when
+        o : Oblast( ime == "administracija", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
+        i : Ispitanik( izabranoZanimanje == "Menadzer")
+    then
+	    i.getObjasnjenja().add("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+	    i.getPredlozeniFakulteti().add("Fakultet organizacionih nauka");
+        update( i );
+end
+
+rule "Administracija slabo dobar i ok prosek izabrao menadzera"
+lock-on-active  true
+    when
+        o : Oblast( ime == "administracija", poeni >23.99994313242919, poeni <= 25) 
+        i : Ispitanik( izabranoZanimanje == "Menadzer")
+    then
+	    i.getObjasnjenja().add("Razmislite o izboru zanimanja jos jednom. Po vasim odgovorima, ova oblast Vam slabije lezi. Ona ukljucuje zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+	    i.getPredlozeniFakulteti().add("Ekonomski fakultet");
+        update( i );
+end
+
+rule "Administracija jako i srednje los prosek izabrao menadzera"
+lock-on-active true
+    when
+        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        i : Ispitanik( izabranoZanimanje == "Menadzer")
+    then
+        i.getObjasnjenja().add("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+        i.getPredlozeniFakulteti().add("Ekonomski fakultet ili ako se dobro spremi prijemni ispit Fakultet organizacionih nauka");
+        update( i );
+end
+
+rule "Administracija slabo los prosek izabrao menadzera"
+lock-on-active true
+    when
+        o : Oblast( ime == "administracija", poeni < 23.999947122861588) 
+        i : Ispitanik( izabranoZanimanje == "Menadzer")
+    then
+        i.getObjasnjenja().add("Razmislite o izboru zanimanja jos jednom. Po vasim odgovorima, ova oblast Vam slabije lezi. Ona ukljucuje zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
+        i.getPredlozeniFakulteti().add("Ekonomski fakultet");
+        update( i );
+end
+
 rule "Administracija jako i srednje dobar i ok prosek nije izabrao nijedan od administrativnih zanimanja"
 lock-on-active true
     when
         o : Oblast( ime == "administracija", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
-        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
+        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik" && izabranoZanimanje != "Menadzer")
     then
         i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.getPredlozeniFakulteti().add("Fakultet organizacionih nauka ili Pravni fakultet ili Ekonomski fakultet");
@@ -86,7 +130,7 @@ rule "Administracija jako i srednje los prosek nije izabrao nijedan od administr
 lock-on-active true
     when
         o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
+        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik" && izabranoZanimanje != "Menadzer")
     then
         i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
         i.getPredlozeniFakulteti().add("Visa poslovna skola, ipak, ako se odlucite za ovu oblast i resite da dobro spremite prijemni ispit, preporucujemo Pravni ili Ekonomski fakultet, kao i Fakultet organizacionih nauka");
@@ -97,7 +141,7 @@ rule "Administracija slabo nije izabrao nijedan od administrativnih zanimanja"
 lock-on-active true
     when
         o : Oblast( ime == "administracija", poeni < 29)
-        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik")
+        i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik" && izabranoZanimanje != "Menadzer")
     then
     	i.getOblasti().remove("administracija");
         update( i );
@@ -189,7 +233,7 @@ lock-on-active true
         i : Ispitanik( izabranoZanimanje == "Vojno lice" || izabranoZanimanje == "Policajac")
     then
         i.getObjasnjenja().add("Vama slabije leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji. Razmislite jos jednom da li je ovo poziv za Vas");
-        i.getPredlozeniFakulteti().add("Fakultet bezbednosti");
+        i.getPredlozeniFakulteti().add("Fakultet bezbednosti ili razne bezbednosne obuke (za vatrogasce, obezbedjenja)");
         update( i );
 end
 
@@ -293,6 +337,17 @@ lock-on-active true
 		update(i);
 end
 
+rule "Tehnicki slabo dobar prosek izabrao programera"
+lock-on-active true
+	when
+	o : Oblast( ime == "tehnicki", poeni > 23.99994313242919, poeni < 25) 
+	i : Ispitanik(izabranoZanimanje == "Programer")
+	then
+		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, ova oblast vam slabije lezi. Njoj pripadaju zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
+		i.getPredlozeniFakulteti().add("Elektro-tehnicki, Matematicki ili Fakultet organizacionih nauka");
+		update(i);
+end
+
 rule "Tehnicki slabo ok i los prosek izabrao programer"
 lock-on-active true
 	when
@@ -315,7 +370,7 @@ lock-on-active true
 		update(i);
 end
 
-rule "Tehnicki jako ok i los prosek nije izabrao nista od ponudjenog"
+rule "Tehnicki jako i srednje ok i los prosek nije izabrao nista od ponudjenog"
 lock-on-active true
 	when
     o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
@@ -403,11 +458,33 @@ lock-on-active true
 		update(i);
 end
 
+rule "Kultura jako i srednje nebitan prosek izabrao novinar"
+lock-on-active true
+	when
+	o : Oblast( ime == "kultura", poeni >= 29) 
+	i : Ispitanik(izabranoZanimanje == "Novinar")
+	then
+		i.getObjasnjenja().add("Odgovaraju Vam poslovi u oblasti kulture, muzike i javne scene: Ucesce na medjunarodnom filmskom festivalu, proucavanje nacionalne muzike, kustos, radio spiker ili TV voditelj, pisac knjige o istoriji umetnosti, biranje filmova za program festivala, smisljanje baletskih i scenskih izvodjenja (koreografije), bavljenje kritikom umetnickog stvaralastva, vodjenje umetnicke galerije, organizacija umetnicke izlozbe, procena vrednosti umetnickih dela, uredjivanje obrazovnih programa za decu, vodjenje TV emisije o kulturi i ucesce u organizaciji kulturnh dogadjaja.");
+		i.getPredlozeniFakulteti().add("Fakultet politickih nauka");
+		update(i);
+end
+
+rule "Kultura slabo nebitan prosek izabrao Novinar"
+lock-on-active true
+	when
+	o : Oblast( ime == "kultura", poeni < 29) 
+	i : Ispitanik(izabranoZanimanje == "Novinar")
+	then
+		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, ova oblast Vam slabije lezi. Pripadaju joj poslovi u oblasti kulture, muzike i javne scene: Ucesce na medjunarodnom filmskom festivalu, proucavanje nacionalne muzike, kustos, radio spiker ili TV voditelj, pisac knjige o istoriji umetnosti, biranje filmova za program festivala, smisljanje baletskih i scenskih izvodjenja (koreografije), bavljenje kritikom umetnickog stvaralastva, vodjenje umetnicke galerije, organizacija umetnicke izlozbe, procena vrednosti umetnickih dela, uredjivanje obrazovnih programa za decu, vodjenje TV emisije o kulturi i ucesce u organizaciji kulturnh dogadjaja.");
+		i.getPredlozeniFakulteti().add("Fakultet politickih nauka");
+		update(i);
+end
+
 rule "Kultura jako i srednje nije izabrao nista od ponudjenog"
 lock-on-active true
 	when
 	o : Oblast( ime == "kultura", poeni >= 29) 
-	i : Ispitanik(izabranoZanimanje != "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje != "Likovni umetnik (slikar, vajar)")
+	i : Ispitanik(izabranoZanimanje != "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje != "Likovni umetnik (slikar, vajar)" || izabranoZanimanje != "Novinar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama dosta leze zanimanja u oblasti kulture, muzike i javne scene: Ucesce na medjunarodnom filmskom festivalu, proucavanje nacionalne muzike, kustos, radio spiker ili TV voditelj, pisac knjige o istoriji umetnosti, biranje filmova za program festivala, smisljanje baletskih i scenskih izvodjenja (koreografije), bavljenje kritikom umetnickog stvaralastva, vodjenje umetnicke galerije, organizacija umetnicke izlozbe, procena vrednosti umetnickih dela, uredjivanje obrazovnih programa za decu, vodjenje TV emisije o kulturi i ucesce u organizaciji kulturnh dogadjaja.");
 		i.getPredlozeniFakulteti().add("Ako se odlucite da se bavite ovom oblascu, preporucujemo Filozofski fakultet");
@@ -418,7 +495,7 @@ rule "Kultura slabo nije izabrao nista od ponudjenog"
 lock-on-active true
 	when
 	o : Oblast( ime == "kultura", poeni < 29) 
-	i : Ispitanik(izabranoZanimanje != "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje != "Likovni umetnik (slikar, vajar)")
+	i : Ispitanik(izabranoZanimanje != "Muzicar (pevac, kompozitor, pijanista...)" || izabranoZanimanje != "Likovni umetnik (slikar, vajar)" || izabranoZanimanje != "Novinar")
 	then
 		i.getOblasti().remove("kultura");
 		update(i);
@@ -426,22 +503,22 @@ end
 //kraj kulture
 
 //nauka
-rule "Nauka jako i srednje izabrao biolog"
+rule "Nauka jako i srednje izabrao biolog/zoolog"
 lock-on-active true
 	when
 	o : Oblast( ime == "nauka", poeni >= 29) 
-	i : Ispitanik(izabranoZanimanje == "Biolog")
+	i : Ispitanik(izabranoZanimanje == "Biolog" || izabranoZanimanje == "Zoolog")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
 		i.getPredlozeniFakulteti().add("Bioloski fakultet");
 		update(i);
 end
 
-rule "Nauka slabo izabrao biolog"
+rule "Nauka slabo izabrao biolog/zoolog"
 lock-on-active true
 	when
 	o : Oblast( ime == "nauka", poeni < 29) 
-	i : Ispitanik(izabranoZanimanje == "Biolog")
+	i : Ispitanik(izabranoZanimanje == "Biolog" || izabranoZanimanje == "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom koliko Vas ovaj poziv privlaci, jer po Vasim odgovorima Vam slabije lezi. Oblasti nauka pripadaju istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
 		i.getPredlozeniFakulteti().add("Bioloski fakultet");
@@ -492,86 +569,64 @@ lock-on-active true
 		update(i);
 end
 
-rule "Nauka jako i srednje izabrao lekara dobar i ok prosek"
+rule "Nauka jako i srednje izabrao lekara/psihijatra dobar i ok prosek"
 lock-on-active true
 	when
         o : Oblast( ime == "nauka", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
+		i.getPredlozeniFakulteti().add("Medicinski ili Stomatoloski fakultet");
 		update(i);
 end
-rule "Nauka slabo izabrao lekara dobar i ok prosek"
+rule "Nauka slabo izabrao lekara/psihijatra dobar i ok prosek"
 lock-on-active true
 	when
 	o : Oblast( ime == "nauka", poeni >23.99994313242919, poeni <= 25) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom koliko Vas ovaj poziv privlaci, jer po Vasim odgovorima Vam slabije lezi. Oblasti nauka pripadaju istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
+		i.getPredlozeniFakulteti().add("Medicinski ili Stomatoloski fakultet");
 		update(i);
 end
 
-rule "Nauka jako i srednje izabrao lekara los prosek"
+rule "Nauka jako i srednje izabrao lekara/psihijatra los prosek"
 lock-on-active true
 	when
         o : Oblast( ime == "nauka", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-		i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+		i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
 		i.getPredlozeniFakulteti().add("Visa medicinska skola");
 		update(i);
 end
 
-rule "Nauka slabo izabrao lekara los prosek"
+rule "Nauka slabo izabrao lekara/psihijatra los prosek"
 lock-on-active true
 	when
 	o : Oblast( ime == "nauka", poeni < 23.999947122861588) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom koliko Vas ovaj poziv privlaci, jer po Vasim odgovorima Vam slabije lezi. Oblasti nauka pripadaju istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
+		i.getPredlozeniFakulteti().add("Visa medicinska skola");
 		update(i);
 end
 
-rule "Nauka jako i srednje dobar i ok prosek izabrao veterinara"
-lock-on-active true
+rule "Nauka jako i srednje izabrao veterinu"
 	when
-    o : Oblast( ime == "nauka", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
+	o : Oblast( ime == "nauka", poeni >= 29) 
 	i : Ispitanik(izabranoZanimanje == "Veterinar")
 	then
+	//i.setRezultat("Nauka");
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
 		i.getPredlozeniFakulteti().add("Fakultet veterinarske medicine");
 		update(i);
 end
 
-rule "Nauka slabo dobar i ok prosek izabrao veterinara"
+rule "Nauka slabo izabrao veterinu"
 lock-on-active true
 	when
-	o : Oblast( ime == "nauka", poeni >23.99994313242919, poeni <= 25) 
-	i : Ispitanik(izabranoZanimanje == "Veterinar")
-	then
-		i.getObjasnjenja().add("Razmislite jos jednom koliko Vas ovaj poziv privlaci, jer po Vasim odgovorima Vam slabije lezi. Oblasti nauka pripadaju istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Fakultet veterinarske medicine");
-		update(i);
-end
-
-rule "Nauka jako i srednje los prosek izabrao veterinara"
-lock-on-active true
-	when
-    o : Oblast( ime == "nauka", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-	i : Ispitanik(izabranoZanimanje == "Veterinar")
-	then
-		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Fakultet veterinarske medicine");
-		update(i);
-end
-
-rule "Nauka slabo los prosek izabrao veterinara"
-lock-on-active true
-	when
-	o : Oblast( ime == "nauka", poeni < 23.999947122861588) 
+	o : Oblast( ime == "nauka", poeni < 29) 
 	i : Ispitanik(izabranoZanimanje == "Veterinar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom koliko Vas ovaj poziv privlaci, jer po Vasim odgovorima Vam slabije lezi. Oblasti nauka pripadaju istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
@@ -586,18 +641,18 @@ lock-on-active true
 	i : Ispitanik(izabranoZanimanje == "Programer")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Elektro-tehnicki fakultet ili Matematicki fakultet");
+		i.getPredlozeniFakulteti().add("Elektro-tehnicki, Matematicki ili Fakultet organizacionih nauka");
 		update(i);
 end
 
 rule "Nauka slabo izabrao programer dobar prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "nauka", poeni >23.99994313242919, poeni <= 25) 
+	o : Oblast( ime == "nauka", poeni > 23.99994313242919, poeni <= 25) 
 	i : Ispitanik(izabranoZanimanje == "Programer")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom koliko Vas ovaj poziv privlaci, jer po Vasim odgovorima Vam slabije lezi. Oblasti nauka pripadaju istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Elektro-tehnicki fakultet ili Matematicki fakultet");
+		i.getPredlozeniFakulteti().add("Elektro-tehnicki, Matematicki ili Fakultet organizacionih nauka");
 		update(i);
 end
 
@@ -627,10 +682,10 @@ rule "Nauka jako i srednje nije izabrao nista od ponudjenog dobar prosek"
 lock-on-active true
 	when
 		o : Oblast( ime == "nauka", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
-		i : Ispitanik(izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog")
+		i : Ispitanik(izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog" || izabranoZanimanje != "Psihijatar" || izabranoZanimanje != "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Prema Vasim odgovorima, Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Elektro-tehnicki fakultet ili Matematicki fakultet");
+		i.getPredlozeniFakulteti().add("Elektro-tehnicki ili Fakultet organizacionih nauka");
 		update(i);
 end
 
@@ -638,10 +693,10 @@ rule "Nauka jako i srednje nije izabrao nista od ponudjenog ok i los prosek"
 lock-on-active true
 	when
     	o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-		i : Ispitanik(izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog")
+		i : Ispitanik(izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog" || izabranoZanimanje != "Psihijatar" || izabranoZanimanje != "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Prema Vasim odgovorima, Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
-		i.getPredlozeniFakulteti().add("Bioloski fakultet ili Hemijski fakultet ili Fizicki fakulte ili Fakultet za fizicku hemiju");
+		i.getPredlozeniFakulteti().add("Matematicki, Bioloski, Hemijski ili Fizicki fakultet");
 		update(i);
 end
 
@@ -649,7 +704,7 @@ rule "Nauka slabo nije izabrao nista od ponudjenog"
 lock-on-active true
 	when
 		o : Oblast( ime == "nauka", poeni < 29) 
-		i : Ispitanik(izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog")
+		i : Ispitanik(izabranoZanimanje != "Programer" || izabranoZanimanje != "Hemicar" || izabranoZanimanje != "Fizicar" || izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Biolog" || izabranoZanimanje != "Psihijatar" || izabranoZanimanje != "Zoolog")
 	then
 		i.getOblasti().remove("nauka");
 		update(i);
@@ -679,22 +734,88 @@ lock-on-active true
 		update(i);
 end
 
-rule "Estet Oblik jako i srednje nije izabrao slikanje"
+rule "Estet Oblik jako i srednje izabrao fotografiju"
 lock-on-active true
 	when
 	o : Oblast( ime == "estetOblik", poeni >= 29) 
-	i : Ispitanik(izabranoZanimanje != "Likovni umetnik (slikar, vajar)")
+	i : Ispitanik(izabranoZanimanje == "Fotograf")
+	then
+		i.getObjasnjenja().add("Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
+		i.getPredlozeniFakulteti().add("NOVA akademija umetnosti");
+		update(i);
+end
+
+rule "Estet Oblik slabo izabrao fotografiju"
+lock-on-active true
+	when
+	o : Oblast( ime == "estetOblik", poeni < 29) 
+	i : Ispitanik(izabranoZanimanje == "Fotograf")
+	then
+		i.getObjasnjenja().add("Razmislite da li Vam ovo izabrano zanimanje odgovara, jer po Vasim odgovorima Vam slabije lezi. Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
+		i.getPredlozeniFakulteti().add("NOVA akademija umetnosti");
+		update(i);
+end
+
+rule "Estet Oblik jako i srednje izabrao dizajn"
+lock-on-active true
+	when
+	o : Oblast( ime == "estetOblik", poeni >= 29) 
+	i : Ispitanik(izabranoZanimanje == "Dizajner")
+	then
+		i.getObjasnjenja().add("Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
+		i.getPredlozeniFakulteti().add("Beogradska politehnika");
+		update(i);
+end
+
+rule "Estet Oblik slabo izabrao dizajn"
+lock-on-active true
+	when
+	o : Oblast( ime == "estetOblik", poeni < 29) 
+	i : Ispitanik(izabranoZanimanje == "Dizajner")
+	then
+		i.getObjasnjenja().add("Razmislite da li Vam ovo izabrano zanimanje odgovara, jer po Vasim odgovorima Vam slabije lezi. Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
+		i.getPredlozeniFakulteti().add("Beogradska politehnika");
+		update(i);
+end
+
+rule "Estet Oblik jako i srednje izabrao arhitekturu"
+lock-on-active true
+	when
+	o : Oblast( ime == "estetOblik", poeni >= 29) 
+	i : Ispitanik(izabranoZanimanje == "Arhitekta")
+	then
+		i.getObjasnjenja().add("Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
+		i.getPredlozeniFakulteti().add("Arhitektonski fakultet");
+		update(i);
+end
+
+rule "Estet Oblik slabo izabrao arhitekturu"
+lock-on-active true
+	when
+	o : Oblast( ime == "estetOblik", poeni < 29) 
+	i : Ispitanik(izabranoZanimanje == "Arhitekta")
+	then
+		i.getObjasnjenja().add("Razmislite da li Vam ovo izabrano zanimanje odgovara, jer po Vasim odgovorima Vam slabije lezi. Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
+		i.getPredlozeniFakulteti().add("Arhitektonski fakultet");
+		update(i);
+end
+
+rule "Estet Oblik jako i srednje nije izabrao nista od ponudjenog"
+lock-on-active true
+	when
+	o : Oblast( ime == "estetOblik", poeni >= 29) 
+	i : Ispitanik(izabranoZanimanje != "Likovni umetnik (slikar, vajar)" || izabranoZanimanje != "Arhitekta" || izabranoZanimanje != "Dizajner" || izabranoZanimanje != "Fotograf")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama pase stvaranje novih dobara i proizvoda u svim oblastima ljudskog zivota: bavljenje umetnickom fotografijom i fotograf, dekorator unutrasnjih prostora (enterijera), dizajner, prodavac umetnickih dela, kompozitor muzike, ilustrator u novinama, arhitekta, scenograf u pozoristu, muzicar, graficki dizajner, aranzer velikih izloga prodavnica, modni dizajner, kompozitor rok ili pop muzike.");
 		i.getPredlozeniFakulteti().add("Fakultet likovnih umetnosti ili Filozofski fakultet");
 		update(i);
 end
 
-rule "Estet Oblik slabo nije izabrao slikanje"
+rule "Estet Oblik slabo nije izabrao ponudjeno"
 lock-on-active true
 	when
 	o : Oblast( ime == "estetOblik", poeni < 29) 
-	i : Ispitanik(izabranoZanimanje != "Likovni umetnik (slikar, vajar)")
+	i : Ispitanik(izabranoZanimanje != "Likovni umetnik (slikar, vajar)" || izabranoZanimanje != "Arhitekta" || izabranoZanimanje != "Dizajner" || izabranoZanimanje != "Fotograf")
 	then
 		i.getOblasti().remove("estetOblik");
 		update(i);
@@ -706,7 +827,7 @@ rule "Poljoprivreda jako i srednje izabrao traktoristu"
 lock-on-active true
 	when
 	o : Oblast( ime == "poljoprivreda", poeni >= 29) 
-	i : Ispitanik(izabranoZanimanje == "Traktorista")
+	i : Ispitanik(izabranoZanimanje == "Traktorista" || izabranoZanimanje == "Farmer" || izabranoZanimanje == "Biolog" || izabranoZanimanje == "Zoolog")
 	then
 		i.getObjasnjenja().add("Poljoprivreda, lov, ribolov, rad sa zivotinjama i na otvorenom prostoru su ona zanimanja u kojima vi mozete naci sebe: Radnik na otvorenom prostoru (pastir, poljoprivrednik itd), obradjivanje zemljista pomocu poljoprivredne mehanizacije, nadzor izlaganja pilica na farmi, zasejavanje poljoprivrednih kultura (psenicu, kukuruz, suncokret...), odredjivanje vrste djubriva za psenicne useve, planiranje i briga o ishrani stoke na farmi, hranjenje ribe u ribnjaku, sumarstvo, uzgoj domacih zivotinja, gajenje vinograda, sadjenje i navodnjavanje voca i povrca, sadjenje, branje i susenje duvana, branje i prodavanje voca, briga o zdravlju domacih zivotinja, skladistenje voca i povrca u hladnjacama i prskanje poljoprivrednih kultura zastitnim sredstvima.");
 		i.getPredlozeniFakulteti().add("Poljoprivredni fakultet");
@@ -717,7 +838,7 @@ rule "Poljoprivreda slabo izabrao traktoristu"
 lock-on-active true
 	when
 	o : Oblast( ime == "poljoprivreda", poeni < 29) 
-	i : Ispitanik(izabranoZanimanje == "Traktorista")
+	i : Ispitanik(izabranoZanimanje == "Traktorista" || izabranoZanimanje == "Farmer" || izabranoZanimanje == "Biolog" || izabranoZanimanje == "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja, jer po Vasim odgovorima poljoprivreda Vam slabije odgovara. Poljoprivreda, lov, ribolov, rad sa zivotinjama i na otvorenom prostoru: Radnik na otvorenom prostoru (pastir, poljoprivrednik itd), obradjivanje zemljista pomocu poljoprivredne mehanizacije, nadzor izlaganja pilica na farmi, zasejavanje poljoprivrednih kultura (psenicu, kukuruz, suncokret...), odredjivanje vrste djubriva za psenicne useve, planiranje i briga o ishrani stoke na farmi, hranjenje ribe u ribnjaku, sumarstvo, uzgoj domacih zivotinja, gajenje vinograda, sadjenje i navodnjavanje voca i povrca, sadjenje, branje i susenje duvana, branje i prodavanje voca, briga o zdravlju domacih zivotinja, skladistenje voca i povrca u hladnjacama i prskanje poljoprivrednih kultura zastitnim sredstvima.");
 		i.getPredlozeniFakulteti().add("Poljoprivredni fakultet");
@@ -728,7 +849,7 @@ rule "Poljoprivreda jako i srednje nije izabrao traktoristu"
 lock-on-active true
 	when
 	o : Oblast( ime == "poljoprivreda", poeni >= 29) 
-	i : Ispitanik(izabranoZanimanje != "Traktorista")
+	i : Ispitanik(izabranoZanimanje != "Traktorista" || izabranoZanimanje != "Farmer" || izabranoZanimanje != "Biolog" || izabranoZanimanje != "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, poljoprivreda, lov, ribolov, rad sa zivotinjama i na otvorenom prostoru su ona zanimanja u kojima vi mozete naci sebe: Radnik na otvorenom prostoru (pastir, poljoprivrednik itd), obradjivanje zemljista pomocu poljoprivredne mehanizacije, nadzor izlaganja pilica na farmi, zasejavanje poljoprivrednih kultura (psenicu, kukuruz, suncokret...), odredjivanje vrste djubriva za psenicne useve, planiranje i briga o ishrani stoke na farmi, hranjenje ribe u ribnjaku, sumarstvo, uzgoj domacih zivotinja, gajenje vinograda, sadjenje i navodnjavanje voca i povrca, sadjenje, branje i susenje duvana, branje i prodavanje voca, briga o zdravlju domacih zivotinja, skladistenje voca i povrca u hladnjacama i prskanje poljoprivrednih kultura zastitnim sredstvima.");
 		i.getPredlozeniFakulteti().add("Poljoprivredni fakultet");
@@ -739,7 +860,7 @@ rule "Poljoprivreda slabo nije izabrao traktoristu"
 lock-on-active true
 	when
 	o : Oblast( ime == "poljoprivreda", poeni < 29) 
-	i : Ispitanik(izabranoZanimanje != "Traktorista")
+	i : Ispitanik(izabranoZanimanje != "Traktorista" || izabranoZanimanje != "Farmer" || izabranoZanimanje != "Biolog" || izabranoZanimanje != "Zoolog")
 	then
 		i.getOblasti().remove("poljoprivreda");
 		update(i);
@@ -754,7 +875,7 @@ lock-on-active true
 	i : Ispitanik(izabranoZanimanje == "Kuvar")
 	then
 		i.getObjasnjenja().add("Rad u prehrambenoj industriji: kuvar nacionalne kuhinje, kuvar strane kuhinje, poslasticar, pekar, nutricionista, dekorator torti, rad za sankom, kreiranje novih recepata, pisanje knjige recepata, konobar.");
-		i.getPredlozeniFakulteti().add("Poljoprivredni fakultet");
+		i.getPredlozeniFakulteti().add("Gastronimija");
 		update(i);
 end
 
@@ -765,7 +886,7 @@ lock-on-active true
 	i : Ispitanik(izabranoZanimanje == "Kuvar")
 	then
 		i.getObjasnjenja().add("Razmislite da li Vam rad u prehrambenoj industriji: kuvar nacionalne kuhinje, kuvar strane kuhinje, poslasticar, pekar, nutricionista, dekorator torti, rad za sankom, kreiranje novih recepata, pisanje knjige recepata, konobar. zaista odgovara, jer po Vasim odgovorima to nije slucaj");
-		i.getPredlozeniFakulteti().add("Poljoprivredni fakultet");
+		i.getPredlozeniFakulteti().add("Gastronomija");
 		update(i);
 end
 
@@ -776,7 +897,7 @@ lock-on-active true
 	i : Ispitanik(izabranoZanimanje != "Kuvar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, preporucujemo Vam rad u prehrambenoj industriji: kuvar nacionalne kuhinje, kuvar strane kuhinje, poslasticar, pekar, nutricionista, dekorator torti, rad za sankom, kreiranje novih recepata, pisanje knjige recepata, konobar.");
-		i.getPredlozeniFakulteti().add("Poljoprivredni fakultet");
+		i.getPredlozeniFakulteti().add("Gastronomija");
 		update(i);
 end
 
@@ -836,24 +957,58 @@ lock-on-active true
 		update(i);
 end
 
-rule "Trgovina jako i srednje nije izabrao trgovac dobar i ok prosek"
+rule "Trgovina jako i srednje izabrao menadzera dobar i ok prosek"
 lock-on-active true
 	when
-    o : Oblast( ime == "trgovina", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
-	i : Ispitanik(izabranoZanimanje != "Trgovac")
+    o : Oblast( ime == "trgovina", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 	
+	i : Ispitanik(izabranoZanimanje == "Menadzer")
 	then
-		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
+		i.getObjasnjenja().add("Pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
+		i.getPredlozeniFakulteti().add("Ekonomski ili Fakultet organizacionih nauka");
+		update(i);
+end
+
+rule "Trgovina slabo izabrao menadzera dobar i ok prosek"
+lock-on-active true
+	when
+	o : Oblast( ime == "trgovina", poeni > 23.999947122861588, poeni < 25) 
+	i : Ispitanik(izabranoZanimanje == "Menadzer")
+	then
+		i.getObjasnjenja().add("Razmislite jos malo o Vasem izboru zanimanja. Pruzanje usluga trgovine Vam, po Vasim odgovorima slabo odgovara: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
+		i.getPredlozeniFakulteti().add("Ekonomski ili Fakultet organizacionih nauka");
+		update(i);
+end
+
+rule "Trgovina jako i srednje izabrao los prosek izabrao menadzera"
+lock-on-active true
+	when
+    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+	i : Ispitanik(izabranoZanimanje == "Menadzer")
+	then
+		i.getObjasnjenja().add("Pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
+		i.getPredlozeniFakulteti().add("Ekonomski fakultet ili Fakultet organizacionih nauka ako se dobro spremi prijemni ispit");
+		update(i);
+end
+
+rule "Trgovina slabo izabrao Menadzer los prosek"
+lock-on-active true
+	when
+		o : Oblast( ime == "trgovina", poeni > 23, poeni < 23.999947122861588) 
+	i : Ispitanik(izabranoZanimanje == "Menadzer")
+	then
+		i.getObjasnjenja().add("Razmislite jos malo o Vasem izboru zanimanja. Pruzanje usluga trgovine Vam, po Vasim odgovorima slabo odgovara: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
 		i.getPredlozeniFakulteti().add("Ekonomski fakultet");
 		update(i);
 end
 
-rule "Trgovina slabo nije izabrao trgovac"
+rule "Trgovina jako i srednje nije izabrao trgovac dobar i ok prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "trgovina", poeni <29) 
-	i : Ispitanik(izabranoZanimanje != "Trgovac")
+    o : Oblast( ime == "trgovina", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
+	i : Ispitanik(izabranoZanimanje != "Trgovac" && izabranoZanimanje != "Menadzer")
 	then
-		i.getOblasti().remove("trgovina");	
+		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
+		i.getPredlozeniFakulteti().add("Ekonomski ili Fakultet organizacionih nauka");
 		update(i);
 end
 
@@ -861,53 +1016,107 @@ rule "Trgovina jako i srednje nije izabrao trgovac los prosek"
 lock-on-active true
 	when
     o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-	i : Ispitanik(izabranoZanimanje != "Trgovac")
+	i : Ispitanik(izabranoZanimanje != "Trgovac" && izabranoZanimanje != "Menadzer")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
 		i.getPredlozeniFakulteti().add("Visa poslovna skola");
 		update(i);
 end
+
+rule "Trgovina slabo nije izabrao trgovac"
+lock-on-active true
+	when
+	o : Oblast( ime == "trgovina", poeni <29) 
+	i : Ispitanik(izabranoZanimanje != "Trgovac" && izabranoZanimanje != "Menadzer")
+	then
+		i.getOblasti().remove("trgovina");	
+		update(i);
+end
 //kraj trgovina
 
 //hum rad
-rule "Hum rad jako i srednje izabrao lekara dobar prosek"
+rule "Hum rad jako i srednje izabrao lekara/psihijatra dobar prosek"
 lock-on-active true
 	when
 	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
-		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
+		i.getPredlozeniFakulteti().add("Medicinski fakultet");
 		update(i);
 end
 
-rule "Hum rad slabo izabrao lekara dobar prosek"
+rule "Hum rad slabo izabrao lekara/psihijatra dobar prosek"
 lock-on-active true
 	when
 	o : Oblast( ime == "humRad", poeni > 23.999947122861588, poeni < 25) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vama slabo odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru. Razmislite jos jednom da li je ovo poziv za Vas.");
-		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
+		i.getPredlozeniFakulteti().add("Medicinski fakultet");
 		update(i);
 end
 
-rule "Hum rad jako i srednje izabrao lekara ok i los prosek"
+rule "Hum rad jako i srednje izabrao lekara/psihijatra ok i los prosek"
 lock-on-active true
 	when
     o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
 		i.getPredlozeniFakulteti().add("Visa medicinska skola");
 		update(i);
 end
 
-rule "Hum rad slabo izabrao lekara ok i los prosek"
+rule "Hum rad slabo izabrao lekara/psihijatra ok i los prosek"
 lock-on-active true
 	when
 	o : Oblast( ime == "humRad", poeni > 23, poeni < 23.999947122861588) 
-	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
+	then
+		i.getObjasnjenja().add("Vama slabo odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru. Razmislite jos jednom da li je ovo poziv za Vas.");
+		i.getPredlozeniFakulteti().add("Visa medicinska skola");
+		update(i);
+end
+
+rule "Hum rad jako i srednje izabrao stomatolog dobar prosek"
+lock-on-active true
+	when
+	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	i : Ispitanik(izabranoZanimanje == "Stomatolog")
+	then
+		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
+		i.getPredlozeniFakulteti().add("Stomatoloski fakultet");
+		update(i);
+end
+
+rule "Hum rad slabo izabrao stomatolog dobar prosek"
+lock-on-active true
+	when
+	o : Oblast( ime == "humRad", poeni > 23.999947122861588, poeni < 25) 
+	i : Ispitanik(izabranoZanimanje == "Stomatolog")
+	then
+		i.getObjasnjenja().add("Vama slabo odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru. Razmislite jos jednom da li je ovo poziv za Vas.");
+		i.getPredlozeniFakulteti().add("Stomatoloski fakultet");
+		update(i);
+end
+
+rule "Hum rad jako i srednje izabrao Stomatolog ok i los prosek"
+lock-on-active true
+	when
+    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+	i : Ispitanik(izabranoZanimanje == "Stomatolog")
+	then
+		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
+		i.getPredlozeniFakulteti().add("Visa medicinska skola");
+		update(i);
+end
+
+rule "Hum rad slabo izabrao Stomatolog ok i los prosek"
+lock-on-active true
+	when
+	o : Oblast( ime == "humRad", poeni > 23, poeni < 23.999947122861588) 
+	i : Ispitanik(izabranoZanimanje == "Stomatolog")
 	then
 		i.getObjasnjenja().add("Vama slabo odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru. Razmislite jos jednom da li je ovo poziv za Vas.");
 		i.getPredlozeniFakulteti().add("Visa medicinska skola");
@@ -932,7 +1141,7 @@ lock-on-active true
 	i : Ispitanik(izabranoZanimanje == "Veterinar")
 	then
 		i.getObjasnjenja().add("Vama slabo odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru. Razmislite jos jednom da li je ovo poziv za Vas.");
-		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
+		i.getPredlozeniFakulteti().add("Fakultet veterinarske medicine");
 		update(i);
 end
 
@@ -962,7 +1171,7 @@ rule "Hum rad jako i srednje nije izabrao ponudjeno dobar prosek"
 lock-on-active true
 	when
 	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
-	i : Ispitanik(izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Stomatolog" || izabranoZanimanje != "Psihijatar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
 		i.getPredlozeniFakulteti().add("Medicinski fakultet ili Stomatoloski fakultet");
@@ -973,7 +1182,7 @@ rule "Hum rad jako i srednje nije izabrao ponudjeno ok i los prosek"
 lock-on-active true
 	when
     o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
-	i : Ispitanik(izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Stomatolog" || izabranoZanimanje != "Psihijatar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
 		i.getPredlozeniFakulteti().add("Visa medicinska skola");
@@ -984,7 +1193,7 @@ rule "Hum rad slabo nije izabrao ponudjeno"
 lock-on-active true
 	when
 	o : Oblast( ime == "humRad", poeni < 29) 
-	i : Ispitanik(izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)")
+	i : Ispitanik(izabranoZanimanje != "Veterinar" || izabranoZanimanje != "Lekar (sve vrste)" || izabranoZanimanje != "Stomatolog" || izabranoZanimanje != "Psihijatar")
 	then
 		i.getOblasti().remove("humRad");
 		update(i);
