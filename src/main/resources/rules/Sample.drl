@@ -51,7 +51,7 @@ end
 rule "Administracija jako i srednje los prosek izabrao racunovodja ili blagajnik"
 lock-on-active true
     when
-        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
         i : Ispitanik( izabranoZanimanje == "Racunovodja" || izabranoZanimanje == "Blagajnik")
     then
         i.getObjasnjenja().add("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
@@ -95,7 +95,7 @@ end
 rule "Administracija jako i srednje los prosek izabrao menadzera"
 lock-on-active true
     when
-        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
         i : Ispitanik( izabranoZanimanje == "Menadzer")
     then
         i.getObjasnjenja().add("Najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
@@ -117,7 +117,7 @@ end
 rule "Administracija jako i srednje dobar i ok prosek nije izabrao nijedan od administrativnih zanimanja"
 lock-on-active true
     when
-        o : Oblast( ime == "administracija", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.2) 
+        o : Oblast( ime == "administracija", (poeni >= 30 && poeni < 34.999969250537234) || (poeni >= 34.99997060111055 && poeni < 38.11) || (poeni >= 38.17 && poeni < 44.2) || poeni > 44.24) 
         i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik" && izabranoZanimanje != "Menadzer")
     then
         i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
@@ -128,7 +128,7 @@ end
 rule "Administracija jako i srednje los prosek nije izabrao nijedan od administrativnih zanimanja"
 lock-on-active true
     when
-        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        o : Oblast( ime == "administracija", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.23544401247219)) 
         i : Ispitanik( izabranoZanimanje != "Blagajnik" && izabranoZanimanje != "Racunovodja" && izabranoZanimanje != "Pravnik" && izabranoZanimanje != "Menadzer")
     then
         i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odogovorima, najvise Vam odgovaraju zanimanja u administraciji, upravi i papirologiji: Finansijski analiticar, poreznik, zapisnicar, delovodja u administraciji, racunovodja, finansijski kontrolor (revizor), pisar u pisarnici neke institucije (sud, opstina, kancelarija), salterski sluzbenik, knjigovodja, strucnjak za procenu materijalne stete i blagajnik.");
@@ -151,7 +151,7 @@ end
 rule "Bezbednost jako i srednje dobar prosek izabrao policajac"
 lock-on-active true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+        o : Oblast( ime == "bezbednost", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
         i : Ispitanik( izabranoZanimanje == "Policajac")
     then
         i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -173,7 +173,7 @@ end
 rule "Bezbednost jako i srednje ok prosek izabrao policajac"
 lock-on-active true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 31 && poeni < 34) || (poeni >= 34.999970 && poeni < 38) || (poeni > 38.11 && poeni < 40) || (poeni > 44.2 && poeni < 44.4)) 
+        o : Oblast( ime == "bezbednost", (poeni > 31 && poeni < 34) || (poeni >= 34.99997060111055 && poeni < 38) || (poeni > 38.11 && poeni < 40) || (poeni > 44.2 && poeni < 44.4)) 
         i : Ispitanik( izabranoZanimanje == "Policajac")
     then
         i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -184,7 +184,7 @@ end
 rule "Bezbednost jako i srednje dobar prosek izabrao vojno lice"
 lock-on-active true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+        o : Oblast( ime == "bezbednost", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
         i : Ispitanik( izabranoZanimanje == "Vojno lice")
     then
         i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -206,7 +206,7 @@ end
 rule "Bezbednost jako i srednje ok prosek izabrao vojno lice"
 no-loop true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 31 && poeni < 34) || (poeni >= 34.999970 && poeni < 38) || (poeni > 38.11 && poeni < 40) || (poeni > 44.2 && poeni < 44.4)) 
+        o : Oblast( ime == "bezbednost", (poeni > 31 && poeni < 34) || (poeni >= 34.99997060111055 && poeni < 38) || (poeni > 38.11 && poeni < 40) || (poeni > 44.2 && poeni < 44.4)) 
         i : Ispitanik( izabranoZanimanje == "Vojno lice")
     then
         i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -217,7 +217,7 @@ end
 rule "Bezbednost jako i srednje los prosek izabrao nesto pandura ili vojnika"
 no-loop true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        o : Oblast( ime == "bezbednost", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
         i : Ispitanik( izabranoZanimanje == "Vojno lice" || izabranoZanimanje == "Policajac")
     then
         i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -239,7 +239,7 @@ end
 rule "Bezbednost jako i srednje dobar prosek nije izabrao nijedan od bezbednosnih zanimanja"
 lock-on-active true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+        o : Oblast( ime == "bezbednost", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
         i : Ispitanik( izabranoZanimanje != "Policajac" && izabranoZanimanje != "Vojno lice")
     then
 	    i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");    
@@ -250,7 +250,7 @@ end
 rule "Bezbednost jako i srednje ok prosek nije izabrao nijedan od bezbednosnih zanimanja"
 lock-on-active true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 31 && poeni < 34) || (poeni >= 34.999970 && poeni < 38) || (poeni > 38.11 && poeni < 40) || (poeni > 44.2 && poeni < 44.4)) 
+        o : Oblast( ime == "bezbednost", (poeni > 31 && poeni < 34) || (poeni >= 34.99997060111055 && poeni < 38) || (poeni > 38.11 && poeni < 40) || (poeni > 44.2 && poeni < 44.4)) 
         i : Ispitanik( izabranoZanimanje != "Policajac" && izabranoZanimanje != "Vojno lice")
     then
         i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -261,7 +261,7 @@ end
 rule "Bezbednost jako i srednje los prosek nije izabrao nijedan od bezbednosnih zanimanja"
 lock-on-active true
     when
-        o : Oblast( ime == "bezbednost", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        o : Oblast( ime == "bezbednost", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
         i : Ispitanik( izabranoZanimanje != "Policajac" && izabranoZanimanje != "Vojno lice")
     then
         i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, najvise Vam leze zanimanja u oblasti obezbedjenja ljudi i dobara, sprovodjenje zakona, cuvanje reda i poredka te rad sa oruzjem: Rad u policiji ili (vojno) bezbednosnoj agenciji, zandarm, radnik u agenciji fizicko-tehnickog obezbedjenja, carinik na granici, oficir i podoficir u vojsci ili policiji, ekspert za taktiku i tehniku antiteroristicke borbe, instruktor borbene obuke, vojnik po ugovoru, vatrogasac, pregovarac u policiji.");
@@ -284,7 +284,7 @@ end
 rule "Tehnicki jako i srednje dobar prosek izabrao tehnicar"
 lock-on-active true
 	when
-	o : Oblast( ime == "tehnicki", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "tehnicki", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje == "Tehnicar")
 	then
 		i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
@@ -306,7 +306,7 @@ end
 rule "Tehnicki jako i srednje ok i los prosek izabrao tehnicar"
 lock-on-active true
 	when
-	o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+	o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Tehnicar")
 	then
 		i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
@@ -328,7 +328,7 @@ end
 rule "Tehnicki jako i srednje dobar prosek izabrao programer"
 lock-on-active true
 	when
-	o : Oblast( ime == "tehnicki", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 	
+	o : Oblast( ime == "tehnicki", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 	
 	i : Ispitanik(izabranoZanimanje == "Programer")
 	then
 		i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
@@ -339,7 +339,7 @@ end
 rule "Tehnicki jako ok i los prosek izabrao programer"
 lock-on-active true
 	when
-    o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Programer")
 	then
 		i.getObjasnjenja().add("Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
@@ -373,7 +373,7 @@ end
 rule "Tehnicki jako i srednje dobar prosek nije izabrao nista od ponudjenog"
 lock-on-active true
 	when
-	o : Oblast( ime == "tehnicki", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "tehnicki", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje != "Programer" && izabranoZanimanje != "Tehnicar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
@@ -384,7 +384,7 @@ end
 rule "Tehnicki jako i srednje ok i los prosek nije izabrao nista od ponudjenog"
 lock-on-active true
 	when
-    o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "tehnicki", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje != "Programer" && izabranoZanimanje != "Tehnicar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise leze zanimanja u oblasti tehnike i razlicitih zanata:  elektricar, zanatlija, programer");
@@ -603,7 +603,7 @@ end
 rule "Nauka jako i srednje izabrao lekara/psihijatra los prosek"
 lock-on-active true
 	when
-        o : Oblast( ime == "nauka", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+        o : Oblast( ime == "nauka", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 		i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
@@ -647,7 +647,7 @@ end
 rule "Nauka jako i srednje izabrao programer dobar prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "nauka", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "nauka", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje == "Programer")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
@@ -669,7 +669,7 @@ end
 rule "Nauka jako i srednje izabrao programer ok i los prosek"
 lock-on-active true
 	when
-    	o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    	o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 		i : Ispitanik(izabranoZanimanje == "Programer")
 	then
 		i.getObjasnjenja().add("Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
@@ -691,7 +691,7 @@ end
 rule "Nauka jako i srednje nije izabrao nista od ponudjenog dobar prosek"
 lock-on-active true
 	when
-		o : Oblast( ime == "nauka", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+		o : Oblast( ime == "nauka", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 		i : Ispitanik(izabranoZanimanje != "Programer" && izabranoZanimanje != "Hemicar" && izabranoZanimanje != "Fizicar" && izabranoZanimanje != "Veterinar" && izabranoZanimanje != "Lekar (sve vrste)" && izabranoZanimanje != "Biolog" && izabranoZanimanje != "Psihijatar" && izabranoZanimanje != "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Prema Vasim odgovorima, Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
@@ -702,7 +702,7 @@ end
 rule "Nauka jako i srednje nije izabrao nista od ponudjenog ok i los prosek"
 lock-on-active true
 	when
-    	o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    	o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 		i : Ispitanik(izabranoZanimanje != "Programer" && izabranoZanimanje != "Hemicar" && izabranoZanimanje != "Fizicar" && izabranoZanimanje != "Veterinar" && izabranoZanimanje != "Lekar (sve vrste)" && izabranoZanimanje != "Biolog" && izabranoZanimanje != "Psihijatar" && izabranoZanimanje != "Zoolog")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Prema Vasim odgovorima, Vas najvise privlace istrazivanja u oblasti prirodnih nauka. Racunarski haker, strucnjak za vestacku inteligeniju i ekspertne sisteme, sudski vestak - lekar, naucnik u institutu, asistent ili demonstrator u skoli ili fakultetu, magistar i doktor nauka, strucnjak za biljke i zivotinje u morima i okeanima, veterinarski hirurg, eksperimentator sa lekovima za dugovecnost, patolog, bakteriolog, astronom, hemicar, strucnjak za eksperimentalnu psihologiju, geolog i nuklearni fizicar");
@@ -948,7 +948,7 @@ end
 rule "Trgovina jako i srednje izabrao los prosek izabrao trgovac"
 lock-on-active true
 	when
-    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Trgovac")
 	then
 		i.getObjasnjenja().add("Pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
@@ -992,7 +992,7 @@ end
 rule "Trgovina jako i srednje izabrao los prosek izabrao menadzera"
 lock-on-active true
 	when
-    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Menadzer")
 	then
 		i.getObjasnjenja().add("Pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
@@ -1025,7 +1025,7 @@ end
 rule "Trgovina jako i srednje nije izabrao trgovac los prosek"
 lock-on-active true
 	when
-    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "trgovina", (poeni > 28 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje != "Trgovac" && izabranoZanimanje != "Menadzer")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, pruzanje usluga trgovine Vam najvise odgovara, tj: nabavka i prodaja domace i robe iz inostranstva, snabdevanje prodavnica robom, sastavljanje ponuda kupcima, komercijalista, razvijanje modela prodaje, rad u turistickoj agenciji, trgovacki putnik, kasir. ");
@@ -1048,7 +1048,7 @@ end
 rule "Hum rad jako i srednje izabrao lekara/psihijatra dobar prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1070,7 +1070,7 @@ end
 rule "Hum rad jako i srednje izabrao lekara/psihijatra ok i los prosek"
 lock-on-active true
 	when
-    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Lekar (sve vrste)" || izabranoZanimanje == "Psihijatar")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1092,7 +1092,7 @@ end
 rule "Hum rad jako i srednje izabrao stomatolog dobar prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje == "Stomatolog")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1114,7 +1114,7 @@ end
 rule "Hum rad jako i srednje izabrao Stomatolog ok i los prosek"
 lock-on-active true
 	when
-    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Stomatolog")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1136,7 +1136,7 @@ end
 rule "Hum rad jako ili srednje izabrao veterinara dobar prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje == "Veterinar")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1158,7 +1158,7 @@ end
 rule "Hum rad jako i srednje izabrao veterinara ok i los prosek"
 lock-on-active true
 	when
-    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje == "Veterinar")
 	then
 		i.getObjasnjenja().add("Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1180,7 +1180,7 @@ end
 rule "Hum rad jako i srednje nije izabrao ponudjeno dobar prosek"
 lock-on-active true
 	when
-	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.999972 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
+	o : Oblast( ime == "humRad", (poeni > 30 && poeni < 31) || (poeni >= 34.99997206422353 && poeni < 38) || (poeni > 38.1 && poeni < 40) || poeni > 44.3) 
 	i : Ispitanik(izabranoZanimanje != "Veterinar" && izabranoZanimanje != "Lekar (sve vrste)" && izabranoZanimanje != "Stomatolog" && izabranoZanimanje != "Psihijatar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");
@@ -1191,7 +1191,7 @@ end
 rule "Hum rad jako i srednje nije izabrao ponudjeno ok i los prosek"
 lock-on-active true
 	when
-    o : Oblast( ime == "nauka", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.999970) || (poeni > 34.999972 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
+    o : Oblast( ime == "humRad", (poeni >= 29 && poeni < 30) || (poeni > 31.066944631624594 && poeni < 34.99997060111055) || (poeni > 34.99997206422353 && poeni < 38.17) || (poeni > 38.23 && poeni <= 44.2)) 
 	i : Ispitanik(izabranoZanimanje != "Veterinar" && izabranoZanimanje != "Lekar (sve vrste)" && izabranoZanimanje != "Stomatolog" && izabranoZanimanje != "Psihijatar")
 	then
 		i.getObjasnjenja().add("Razmislite jos jednom o Vasem izboru zanimanja. Po Vasim odgovorima, Vama najvise odgovaraju zanimanja iz oblasti zdravstva i humanitarnog rada: lekar, medicinska sestra, psihijatar, psiholog, socijalni radnik, vaspitac, rad u domovima za stare, rad u decijim domovima, rad u maloletnickom zatvoru.");

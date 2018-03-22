@@ -31,6 +31,7 @@ public class DesetaStrana extends JDialog {
 			}
 		});
 		setTitle("Upitnik");
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 534, 486);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

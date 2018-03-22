@@ -41,6 +41,7 @@ public class Rezultati extends JDialog {
 
 	public Rezultati() {
 		setTitle("Rezultati ispitivanja");
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 554, 379);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -95,19 +96,15 @@ public class Rezultati extends JDialog {
 		            String text = jtfKriterijumPretrage.getText().trim();
 		            List<Ispitanik> ispitanicikrt = Kontroler.getInstanca().pretraziIspitanike(text);
 		            if (text == null || text.isEmpty()) {
-		                //jlbObavestenje.setVisible(false);
 		            	jtfKriterijumPretrage.setBackground(Color.white);
 		            }else if (ispitanicikrt == null || ispitanicikrt.isEmpty()) {
-		                //jlbObavestenje.setText("Pronadjeni letovi po unetoj vrednosti!!!");
 		            	jtfKriterijumPretrage.setBackground(Color.RED);
 		            } else {
-		               // jlbObavestenje.setText("Sistem ne može da nade letove po zadatim vrednostima!!!");
 		            	jtfKriterijumPretrage.setBackground(Color.white);
 		            }
 		            tml.setIspitanici(ispitanicikrt);
 		            tml.osveziTabelu();
 		        } catch (Exception ex) {
-		           // jlbObavestenje.setText("Sistem ne može da nade letove po zadatim vrednostima!!!");
 		            tml.setIspitanici(new ArrayList<>());
 		        }
 			}

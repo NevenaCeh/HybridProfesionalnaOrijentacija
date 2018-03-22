@@ -184,6 +184,6 @@ public class UlogujSe extends JDialog {
 		lblZelimDaBudem.setBounds(33, 278, 124, 14);
 		contentPanel.add(lblZelimDaBudem);
 		
-		
+		setLocationRelativeTo(null);
 	}
 }

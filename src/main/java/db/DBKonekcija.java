@@ -142,12 +142,17 @@ public class DBKonekcija {
 				String[] obl = oblasti.split(",");
 				String faksevi = rs.getString("fakulteti");
 				String[] f= faksevi.split("=");
+				
 				Ispitanik i = new Ispitanik();
 				i.setJmbg(jmbg);
 				i.setImePrezime(ime);
 				i.setProsek(prosek);
 				i.setIzabranoZanimanje(zanimanje);
+				
 				i.setOblasti(Arrays.asList(obl));	
+				if (i.getOblasti().contains("Premala zainteresovanost za ove oblasti!!!")) {
+					i.getObjasnjenja().add("Po Vasim odgovorima, Vi ste slabo zainteresovani za ove oblasti i na osnovu ovih parametara Vam ne mozemo odrediti odredjenu oblast koja Vam najvise lezi.");
+					i.getPredlozeniFakulteti().add("Zamolite psihologa za razgovor ili testiranje pomocu nekog drugog testa!");				}
 				List<Oblast> oblastibaza = vratiListuOblasti();
 				for (String string : obl) {
 					for (Oblast o : oblastibaza) {

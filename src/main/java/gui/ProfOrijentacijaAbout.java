@@ -20,6 +20,7 @@ public class ProfOrijentacijaAbout extends JDialog {
 	public ProfOrijentacijaAbout() {
 		setBounds(100, 100, 543, 705);
 		setModal(true);
+		setLocationRelativeTo(null);
 		setTitle("O profesionalnoj orijentaciji");
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -46,6 +46,7 @@ public class StranaSaRezultatima extends JDialog {
 	private JPanel panelSaDugmicima;
 	private JLabel jlbOblast;
 	private JTextPane jtaObjasnjenje;
+	private JTextPane jtaPreporucujemo;
 	private JLabel jlbFaks;	
 	private JPanel panelSaOblastima;
 	private JButton btnPan1;
@@ -58,6 +59,9 @@ public class StranaSaRezultatima extends JDialog {
 	private JLabel lblError;
 	JLabel slikakljuc;
 	
+	/**
+	 * @wbp.parser.constructor
+	 */
 	public StranaSaRezultatima(int brojOblasti) {
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -67,6 +71,7 @@ public class StranaSaRezultatima extends JDialog {
 		});
 		setBounds(100, 100, 923, 489);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
@@ -180,12 +185,20 @@ public class StranaSaRezultatima extends JDialog {
 		jtaObjasnjenje.setAutoscrolls(true);			
 		
 		JLabel lblPreporucujemo = new JLabel("Preporucujemo:");
-		lblPreporucujemo.setBounds(72, 175, 97, 16);
+		lblPreporucujemo.setBounds(72, 189, 97, 16);
 		panelSaOblastima.add(lblPreporucujemo);
 		
 		jlbFaks = new JLabel();
-		jlbFaks.setBounds(171, 175, 697, 16);
+		jlbFaks.setBounds(171, 148, 697, 16);
 		panelSaOblastima.add(jlbFaks);
+		jlbFaks.setVisible(false);
+		
+		jtaPreporucujemo = new JTextPane();
+		jtaPreporucujemo.setBounds(171, 169, 684, 49);
+		panelSaOblastima.add(jtaPreporucujemo);
+		jtaPreporucujemo.setEditable(false);
+		jtaPreporucujemo.setOpaque(false);
+		jtaPreporucujemo.setAutoscrolls(true);
 		
 		postaviIzgledPanelaOblasti(0);		
 	}
@@ -509,10 +522,19 @@ public class StranaSaRezultatima extends JDialog {
 			Font f = jlbOblast.getFont();
 			jlbOblast.setFont(f.deriveFont(f.getStyle() | Font.BOLD));;
 			jlbFaks.setText(prfax);
-			//jtaObjasnjenje.setText(objasnjenje);
-			//jtaObjasnjenje.setWrapStyleWord(true);
-			//jtaObjasnjenje.setLineWrap(true);
 			
+			jtaPreporucujemo.setEditorKit(new MyEditorKit());
+			SimpleAttributeSet attrs1=new SimpleAttributeSet();
+	        StyleConstants.setAlignment(attrs1,StyleConstants.ALIGN_CENTER);
+	        StyledDocument doc1=(StyledDocument)jtaPreporucujemo.getDocument();
+	        try {
+				doc1.insertString(0, prfax, attrs1);
+			} catch (BadLocationException e1) {
+				e1.printStackTrace();
+			}
+	        doc1.setParagraphAttributes(0,doc1.getLength()-1,attrs1,false);
+
+	        
 			jtaObjasnjenje.setEditorKit(new MyEditorKit());
 			SimpleAttributeSet attrs=new SimpleAttributeSet();
 	        StyleConstants.setAlignment(attrs,StyleConstants.ALIGN_CENTER);

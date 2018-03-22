@@ -43,11 +43,9 @@ public class Pocetna extends JFrame {
 				Kontroler.getInstanca().sakrijPocetnu();
 			}
 		});
-		mnTest.add(jmiZapocniTest);
-		
+		mnTest.add(jmiZapocniTest);		
 		JMenu mnPomoc = new JMenu("Pomoc");
-		menuBar.add(mnPomoc);
-		
+		menuBar.add(mnPomoc);		
 		JMenuItem jmiSvasta = new JMenuItem("O profesionalnoj orijentaciji");
 		jmiSvasta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -60,7 +58,7 @@ public class Pocetna extends JFrame {
 		JMenuItem jmiOblasti = new JMenuItem("Oblasti");
 		jmiOblasti.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				OblastiPregled2 info = new OblastiPregled2();
+				OblastiInfo info = new OblastiInfo();
 				info.setVisible(true);
 			}
 		});
@@ -85,9 +83,9 @@ public class Pocetna extends JFrame {
 				{
 				    char[] password = pass.getPassword();
 				    String lozinka = new String(password);
-				    System.out.println("Your password is: " + lozinka);
+				    //System.out.println("Your password is: " + lozinka);
 				    if (lozinka.equals("asd")) {
-						System.out.println("Super");
+						//System.out.println("Super");
 						Rezultati r = new Rezultati();
 						r.setVisible(true);
 					}else {
